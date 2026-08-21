@@ -62,3 +62,11 @@ A single HTML file was requested containing every Markdown file in the repositor
 ## 13. Add a technical terminology refresher
 
 The README's opening was simplified for students who have completed three software-development courses but may need a refresher. A technical reference was added for Java, Git, IDE, build, and AI-development terminology, and student-facing documents now deep-link technical terms to the relevant definitions instead of removing the terms from the course materials.
+
+## 14. Simplify technical-reference links in the Kindle edition
+
+After the regenerated HTML displayed as source text on a Kindle device, the previous and current document structures were compared. The Markdown documents retain their technical-reference deep links, while the combined Kindle HTML presents those terms as ordinary text and keeps only its navigation links, reducing the converter-facing link structure.
+
+## 15. Exclude the technical reference from the Kindle edition
+
+Removing the deep links did not correct the Kindle conversion. The next introduced complexity—the additional technical-reference section with 31 second-level headings and several lists—was therefore excluded from the combined HTML while remaining available as a separate Markdown reference in the repository.

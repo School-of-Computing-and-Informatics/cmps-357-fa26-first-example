@@ -17,9 +17,9 @@ During this exercise, students will practice:
 
 ## Day 1 workflow
 
+**Git setup:** Students familiar with Git may create their own fork. Otherwise, changes can be made in a local branch as demonstrated in class.
+
 1. [Clone](docs/TECHNICAL-REFERENCE.md#clone-fork-branch-and-commit) the repository and open it in a supported Java [IDE](docs/TECHNICAL-REFERENCE.md#ide).
-    1. If a student is familiar with Git, they may consider making their own [fork](docs/TECHNICAL-REFERENCE.md#clone-fork-branch-and-commit).
-    2. Otherwise, student changes can be made in a local [branch](docs/TECHNICAL-REFERENCE.md#clone-fork-branch-and-commit) as demonstrated in class.
 2. Read [`docs/SPEC.md`](docs/SPEC.md) before prompting an AI assistant.
 3. Run `Main` and observe that the project [compiles](docs/TECHNICAL-REFERENCE.md#compile-build-and-run) but produces no output.
 4. Add the data [model](docs/TECHNICAL-REFERENCE.md#model-and-domain-model) and required [methods](docs/TECHNICAL-REFERENCE.md#api) in small, reviewable steps.
@@ -50,7 +50,7 @@ Students should not ask an AI assistant to finish the entire project in one requ
 - [`docs/INSTRUCTOR-GUIDE.md`](docs/INSTRUCTOR-GUIDE.md) — suggested classroom sequence and discussion points
 - [`docs/IDE-SETUP.md`](docs/IDE-SETUP.md) — setup and run instructions for VS Code, IntelliJ IDEA, Eclipse, and NetBeans
 - [`docs/TECHNICAL-REFERENCE.md`](docs/TECHNICAL-REFERENCE.md) — refresher for Java, Git, IDE, build, and AI-development terminology
-- [`docs/KINDLE.html`](docs/KINDLE.html) — Kindle-ready compilation of every Markdown document
+- [`docs/KINDLE.html`](docs/KINDLE.html) — Kindle-ready compilation of the main course documentation
 - [`docs/TRANSCRIPT.md`](docs/TRANSCRIPT.md) — summary and shared conversation for the repository's development
 
 ## IDE support
