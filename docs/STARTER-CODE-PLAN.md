@@ -53,7 +53,7 @@ public class Workshop {
 
 Running the initial project should succeed and produce no output. The empty files make the starting point explicit while leaving all model and driver decisions visible during the live exercise.
 
-The committed IDE metadata is scaffolding only. It standardizes Java 17, the `src` source root, the `out` build directory, and the `Main` entry point without supplying any domain implementation.
+The committed [IDE metadata](TECHNICAL-REFERENCE.md#project-metadata-module-and-run-configuration) is [scaffolding](TECHNICAL-REFERENCE.md#scaffolding) only. It standardizes Java 17, the `src` [source root](TECHNICAL-REFERENCE.md#source-root-and-output-directory), the `out` build directory, and the `Main` [entry point](TECHNICAL-REFERENCE.md#main-method-driver-and-entry-point) without supplying any [domain implementation](TECHNICAL-REFERENCE.md#implementation-and-behavior).
 
 ## Intended completed responsibilities
 
@@ -69,16 +69,16 @@ Students add the stored state, constructor, accessors, collection behavior, scal
 
 ### `Main.java`
 
-Students complete the driver using the exact workshop and supply data in `SPEC.md`. The driver constructs objects and displays results but does not implement domain behavior itself.
+Students complete the [driver](TECHNICAL-REFERENCE.md#main-method-driver-and-entry-point) using the exact workshop and supply data in `SPEC.md`. The driver constructs objects and displays results but does not implement domain behavior itself.
 
 ## What not to include initially
 
 - a completed or partially implemented domain model;
 - TODO comments that prescribe an implementation strategy;
-- external dependencies or an unnecessary build framework;
-- collection, search, sorting, persistence, or UI stages;
-- an answer key on a student-visible branch;
-- generated IDE output, `.class` files, or an `out/` directory; or
+- external [dependencies or an unnecessary build framework](TECHNICAL-REFERENCE.md#dependency-and-build-framework);
+- collection, search, sorting, [persistence, or UI](TECHNICAL-REFERENCE.md#persistence-and-ui) stages;
+- an answer key on a student-visible [branch](TECHNICAL-REFERENCE.md#clone-fork-branch-and-commit);
+- generated IDE output, [`.class` files](TECHNICAL-REFERENCE.md#class-file-and-classpath), or an `out/` directory; or
 - tests that reveal the complete implementation strategy.
 
 ## Pre-class acceptance checklist
