@@ -17,7 +17,9 @@ During this exercise, students will practice:
 
 ## Day 1 workflow
 
-1. Clone the repository and open it in a supported Java IDE.
+1. Clone the repository and open it in a supported Java IDE. 
+  a. If a student id familiar with Git, they may consider making their own fork.
+  b. Otherwise, student changes can be made in a local branch as demonstrated in class. 
 2. Read [`docs/SPEC.md`](docs/SPEC.md) before prompting an AI assistant.
 3. Run `Main` and observe that the project compiles but produces no output.
 4. Add the data model and required methods in small, reviewable steps.
