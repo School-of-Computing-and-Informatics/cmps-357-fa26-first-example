@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html xmlns:mbp="http://mobipocket.com/ns/mbp" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CMPS 357 Day 1 Repository Documentation</title>
+  <style>
+    body { font-family: serif; line-height: 1.45; margin: 5%; }
+    h1, h2, h3, h4 { font-family: sans-serif; page-break-after: avoid; }
+    h1 { text-align: center; }
+    p, li, blockquote { orphans: 2; widows: 2; }
+    a { color: inherit; text-decoration: underline; }
+    pre {
+      font-family: monospace; font-size: 0.85em; line-height: 1.25;
+      white-space: pre-wrap; overflow-wrap: anywhere;
+      border: 1px solid #888; padding: 0.75em;
+    }
+    code { font-family: monospace; }
+    table { border-collapse: collapse; width: 100%; page-break-inside: avoid; }
+    th, td { border: 1px solid #888; padding: 0.35em; vertical-align: top; }
+    th { font-family: sans-serif; text-align: left; }
+    blockquote { border-left: 0.25em solid #888; margin-left: 0; padding-left: 1em; }
+    .source-path { font-family: sans-serif; font-size: 0.9em; text-align: center; }
+  </style>
+</head>
+<body>
+<h1 id="cmps-357-day-1-repository-documentation">CMPS 357 Day 1
+Repository Documentation</h1>
+<p>This Kindle edition combines every Markdown file currently in the
+repository into one navigable document.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#file-readme">Repository Overview — README.md</a></li>
+<li><a href="#file-spec">Workshop Supply Planner Specification —
+docs/SPEC.md</a></li>
+<li><a href="#file-ai-worklog">AI Work Log — docs/AI-WORKLOG.md</a></li>
+<li><a href="#file-starter-code-plan">Starter Code Plan —
+docs/STARTER-CODE-PLAN.md</a></li>
+<li><a href="#file-instructor-guide">Day 1 Instructor Guide —
+docs/INSTRUCTOR-GUIDE.md</a></li>
+<li><a href="#file-ide-setup">IDE Setup — docs/IDE-SETUP.md</a></li>
+<li><a href="#file-transcript">Development Transcript Summary —
+docs/TRANSCRIPT.md</a></li>
+</ul>
+<mbp:pagebreak />
+<section id="file-readme">
+
+<p class="source-path"><strong>Source file:</strong> <code>README.md</code></p>
+
+<h1 id="cmps-357-fall-2026-first-example">CMPS 357 Fall 2026 First
+Example</h1>
+<p>This repository contains the first in-class example for <strong>CMPS
+357: Accelerated Software Development Using AI Tools</strong>.</p>
+<p>The example uses a small <strong>Workshop Supply Planner</strong> to
+introduce specification-driven development with an AI coding assistant.
+Students begin with a compiling Java project containing an empty main
+driver and empty domain-class shells. The goal is to build the required
+model and behavior incrementally until the program output matches the
+written specification.</p>
+<h2 id="learning-goals">Learning goals</h2>
+<p>During this exercise, students will practice:</p>
+<ul>
+<li>reading a software specification before changing code;</li>
+<li>identifying the smallest relevant context for an AI assistant;</li>
+<li>implementing and verifying one behavior at a time;</li>
+<li>reviewing generated code instead of accepting it automatically;</li>
+<li>comparing actual output with exact required output; and</li>
+<li>making small Git commits with meaningful messages.</li>
+</ul>
+<h2 id="day-1-workflow">Day 1 workflow</h2>
+<ol type="1">
+<li>Clone the repository and open it in a supported Java IDE.</li>
+<li>Read <a href="#file-spec"><code>docs/SPEC.md</code></a> before
+prompting an AI assistant.</li>
+<li>Run <code>Main</code> and observe that the project compiles but
+produces no output.</li>
+<li>Add the data model and required methods in small, reviewable
+steps.</li>
+<li>Implement one behavior at a time.</li>
+<li>Run the program and inspect the diff after every meaningful
+change.</li>
+<li>Compare the final output character-for-character with the
+specification.</li>
+<li>Record important prompts, decisions, and verification steps in <a
+href="#file-ai-worklog"><code>docs/AI-WORKLOG.md</code></a>.</li>
+<li>Commit each understandable improvement separately.</li>
+</ol>
+<h2 id="suggested-implementation-order">Suggested implementation
+order</h2>
+<ol type="1">
+<li><code>Supply</code> fields, constructor, and accessors</li>
+<li><code>Workshop</code> fields, constructor, and accessors</li>
+<li><code>addSupply</code></li>
+<li><code>totalSupplyCount</code></li>
+<li><code>scaleToAttendees</code></li>
+<li>private amount-formatting helper</li>
+<li><code>toString</code> and <code>toPrettyString</code></li>
+<li>the example sequence in <code>Main</code></li>
+</ol>
+<p>Students should not ask an AI assistant to finish the entire project
+in one request. The exercise is designed around focused prompts, short
+feedback cycles, and deliberate verification.</p>
+<h2 id="documentation">Documentation</h2>
+<ul>
+<li><a href="#file-spec"><code>docs/SPEC.md</code></a> — source of truth
+for required behavior</li>
+<li><a href="#file-ai-worklog"><code>docs/AI-WORKLOG.md</code></a> —
+student record of AI-assisted work</li>
+<li><a
+href="#file-starter-code-plan"><code>docs/STARTER-CODE-PLAN.md</code></a>
+— required shape of the starter project</li>
+<li><a
+href="#file-instructor-guide"><code>docs/INSTRUCTOR-GUIDE.md</code></a>
+— suggested classroom sequence and discussion points</li>
+<li><a href="#file-ide-setup"><code>docs/IDE-SETUP.md</code></a> — setup
+and run instructions for VS Code, IntelliJ IDEA, Eclipse, and
+NetBeans</li>
+<li><a href="#file-transcript"><code>docs/TRANSCRIPT.md</code></a> —
+summary and shared conversation for the repository's development</li>
+</ul>
+<h2 id="ide-support">IDE support</h2>
+<p>Project files are included for:</p>
+<ul>
+<li>Visual Studio Code, using explicit Java CLI compile and run
+tasks;</li>
+<li>IntelliJ IDEA;</li>
+<li>Eclipse; and</li>
+<li>NetBeans, using the included Ant build file.</li>
+</ul>
+<p>See <a href="#file-ide-setup"><code>docs/IDE-SETUP.md</code></a> for
+instructions. All configurations target Java 17 and share the same
+<code>src</code> source directory and <code>out</code> build
+directory.</p>
+<h2 id="repository-structure">Repository structure</h2>
+<pre class="text"><code>cmps-fa26-first-example/
+├── .idea/                              # Shared IntelliJ IDEA project configuration
+│   ├── runConfigurations/              # IntelliJ run configurations available to all users
+│   │   └── Main.xml                    # Builds the module and launches the Main class
+│   ├── compiler.xml                    # Sends IntelliJ compiler output to the out directory
+│   ├── misc.xml                        # Sets the IntelliJ project language level to Java 17
+│   └── modules.xml                     # Registers the committed IntelliJ module file
+├── .settings/                          # Shared Eclipse workspace-independent settings
+│   ├── org.eclipse.core.resources.prefs # Uses UTF-8 for Eclipse project resources
+│   └── org.eclipse.jdt.core.prefs      # Sets Eclipse compiler compliance to Java 17
+├── .vscode/                            # Shared Visual Studio Code workspace configuration
+│   ├── extensions.json                 # Recommends the Extension Pack for Java
+│   ├── settings.json                   # Declares src and out as the Java source and output paths
+│   └── tasks.json                      # Defines javac compilation and java execution tasks
+├── docs/                               # Specifications, setup guidance, and process records
+│   ├── AI-WORKLOG.md                   # Template for prompts, reviews, verification, and reflection
+│   ├── IDE-SETUP.md                    # Instructions for the four supported IDEs and command line
+│   ├── INSTRUCTOR-GUIDE.md             # Suggested 75-minute lesson plan and review questions
+│   ├── SPEC.md                         # Source of truth for required behavior and exact output
+│   ├── STARTER-CODE-PLAN.md            # Defines the intended empty starting state and responsibilities
+│   └── TRANSCRIPT.md                   # Summarizes the requests and decisions behind the repository
+├── nbproject/                          # NetBeans free-form Ant project configuration
+│   ├── project.properties              # Defines the src, out, and UTF-8 project properties
+│   └── project.xml                     # Maps NetBeans build, clean, and run actions to Ant targets
+├── src/                                # Java source root used by every supported environment
+│   ├── Main.java                       # Empty command-line driver completed during class
+│   ├── Supply.java                     # Empty supply-model class completed during class
+│   └── Workshop.java                   # Empty workshop-model class completed during class
+├── .classpath                          # Maps Eclipse source, Java 17 runtime, and output paths
+├── .gitignore                          # Excludes generated classes, build output, and local IDE state
+├── .project                            # Identifies the repository as an Eclipse Java project
+├── Main.launch                         # Shared Eclipse launch configuration for Main
+├── README.md                           # Introduces the exercise, workflow, documentation, and IDEs
+├── build.xml                           # Compiles, runs, and cleans the project for NetBeans and Ant
+└── cmps-fa26-first-example.iml         # Defines the IntelliJ Java module and its source root</code></pre>
+<p>The generated <code>out/</code> directory is not shown because it is
+created locally by the selected build path and excluded from version
+control.</p>
+<p>If generated code and the specification disagree, the specification
+wins.</p>
+</section>
+
+<mbp:pagebreak />
+<section id="file-spec">
+
+<p class="source-path"><strong>Source file:</strong> <code>docs/SPEC.md</code></p>
+
+<h1 id="workshop-supply-planner-specification">Workshop Supply Planner
+Specification</h1>
+<h2 id="goal">Goal</h2>
+<p>Implement the <code>Supply</code> and <code>Workshop</code> models,
+then complete the example driver in <code>Main</code> so that running
+the program produces the required output exactly.</p>
+<p>Behavior belonging to the domain model must be implemented in the
+domain classes. <code>Main</code> should construct objects and display
+results; it must not reproduce the domain behavior with hard-coded
+output.</p>
+<h2 id="workshop-model">Workshop model</h2>
+<p>A workshop has:</p>
+<ul>
+<li>a title stored as a <code>String</code>;</li>
+<li>an attendee count stored as an <code>int</code>; and</li>
+<li>a list of supplies stored in the order in which they were
+added.</li>
+</ul>
+<p>Each supply has:</p>
+<ul>
+<li>a name stored as a <code>String</code>; and</li>
+<li>an amount stored as a <code>double</code>.</li>
+</ul>
+<h2 id="required-supply-api">Required <code>Supply</code> API</h2>
+<p>Implement <code>Supply</code> with:</p>
+<ul>
+<li>a final <code>String name</code> field;</li>
+<li>a mutable <code>double amount</code> field;</li>
+<li><code>Supply(String name, double amount)</code>;</li>
+<li><code>getName()</code>;</li>
+<li><code>getAmount()</code>; and</li>
+<li><code>setAmount(double amount)</code>.</li>
+</ul>
+<h2 id="required-workshop-structure">Required <code>Workshop</code>
+structure</h2>
+<p>Implement <code>Workshop</code> with:</p>
+<ul>
+<li>a final <code>String title</code> field;</li>
+<li>an <code>int attendees</code> field;</li>
+<li>a final <code>List&lt;Supply&gt; supplies</code> field;</li>
+<li><code>Workshop(String title, int attendees)</code>;</li>
+<li><code>getTitle()</code>;</li>
+<li><code>getAttendees()</code>; and</li>
+<li><code>getSupplies()</code>, returning a defensive copy rather than
+the mutable internal list.</li>
+</ul>
+<h2 id="required-methods">Required methods</h2>
+<p>Implement these methods in <code>Workshop.java</code>:</p>
+<ul>
+<li><code>addSupply(String supplyName, double amount)</code></li>
+<li><code>scaleToAttendees(int newAttendeeCount)</code></li>
+<li><code>totalSupplyCount()</code></li>
+<li><code>toString()</code></li>
+<li><code>toPrettyString()</code></li>
+</ul>
+<p>Private helper methods may be added when they make the implementation
+clearer.</p>
+<h2 id="supply-order-rules">Supply-order rules</h2>
+<ul>
+<li>Preserve the order in which supplies are added.</li>
+<li>Adding a supply must not replace or reorder an existing supply.</li>
+<li>Two supplies with the same name remain two separate entries in this
+exercise.</li>
+</ul>
+<h2 id="addsupply"><code>addSupply</code></h2>
+<p>Add one new supply entry to the end of the workshop's supply
+list.</p>
+<p>For example:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>workshop<span class="op">.</span><span class="fu">addSupply</span><span class="op">(</span><span class="st">&quot;index cards&quot;</span><span class="op">,</span> <span class="dv">48</span><span class="op">);</span></span></code></pre></div>
+<p>adds a supply named <code>index cards</code> with an amount of
+<code>48.0</code>.</p>
+<h2 id="totalsupplycount"><code>totalSupplyCount</code></h2>
+<p>Return the number of supply entries in the workshop. Count entries,
+not the sum of their amounts.</p>
+<p>A workshop containing index cards, marker packs, and feedback forms
+has three supply entries.</p>
+<h2 id="scaletoattendees"><code>scaleToAttendees</code></h2>
+<p>Scale every supply amount proportionally for a new attendee
+count.</p>
+<p>If the current attendee count is <code>a</code> and the new attendee
+count is <code>n</code>, multiply each amount by:</p>
+<pre class="text"><code>n / a</code></pre>
+<p>The calculation must use floating-point division. After scaling the
+supplies, update the workshop's attendee count.</p>
+<p>If <code>newAttendeeCount</code> is less than or equal to zero, throw
+an <code>IllegalArgumentException</code>. An invalid request must not
+partially modify the workshop.</p>
+<h2 id="amount-formatting">Amount formatting</h2>
+<p>When displaying an amount:</p>
+<ul>
+<li>display an integer value without a decimal point;</li>
+<li>otherwise display no more than two digits after the decimal
+point;</li>
+<li>round to the nearest hundredth when necessary;</li>
+<li>remove unnecessary trailing zeros; and</li>
+<li>do not use scientific notation.</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Stored amount</th>
+<th style="text-align: right;">Displayed amount</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;"><code>48.0</code></td>
+<td style="text-align: right;"><code>48</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><code>4.5</code></td>
+<td style="text-align: right;"><code>4.5</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><code>1.125</code></td>
+<td style="text-align: right;"><code>1.13</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"><code>3.50</code></td>
+<td style="text-align: right;"><code>3.5</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><code>0.75</code></td>
+<td style="text-align: right;"><code>0.75</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="tostring"><code>toString</code></h2>
+<p>Return a multiline string in this format:</p>
+<pre class="text"><code>&lt;title&gt; (&lt;attendees&gt; attendees)
+- &lt;amount&gt; &lt;supply name&gt;
+- &lt;amount&gt; &lt;supply name&gt;</code></pre>
+<p>Do not add a blank line at the beginning or end of the returned
+string. <code>toString()</code> must return the formatted value; it must
+not print directly to the console.</p>
+<h2 id="toprettystring"><code>toPrettyString</code></h2>
+<p>Return a user-friendly multiline representation of the workshop. For
+this first exercise, <code>toPrettyString()</code> returns the same
+content as <code>toString()</code>.</p>
+<h2 id="required-main-driver">Required <code>Main</code> driver</h2>
+<p>Complete the empty <code>main</code> method so that it:</p>
+<ol type="1">
+<li>Creates <code>AI-Assisted Prototyping Workshop</code> for 24
+attendees.</li>
+<li>Adds these supplies in order:
+<ul>
+<li>48 index cards;</li>
+<li>6 marker packs;</li>
+<li>3 rolls of painter's tape;</li>
+<li>0.75 reams of printer paper; and</li>
+<li>24 feedback forms.</li>
+</ul></li>
+<li>Displays the workshop.</li>
+<li>Displays the number of supply entries.</li>
+<li>Scales the workshop to 36 attendees.</li>
+<li>Displays the scaled workshop.</li>
+</ol>
+<h2 id="required-output">Required output</h2>
+<p>Running <code>Main</code> must produce exactly:</p>
+<pre class="text"><code>AI-Assisted Prototyping Workshop (24 attendees)
+- 48 index cards
+- 6 marker packs
+- 3 rolls of painter&#39;s tape
+- 0.75 reams of printer paper
+- 24 feedback forms
+
+Supply entries: 5
+
+After scaling to 36 attendees:
+
+AI-Assisted Prototyping Workshop (36 attendees)
+- 72 index cards
+- 9 marker packs
+- 4.5 rolls of painter&#39;s tape
+- 1.13 reams of printer paper
+- 36 feedback forms</code></pre>
+<p>The printer-paper amount scales from <code>0.75</code> to
+<code>1.125</code>, which displays as <code>1.13</code> under the
+formatting rules.</p>
+<h2 id="constraints">Constraints</h2>
+<ul>
+<li>Do not hard-code the required output.</li>
+<li>Use the exact example data and order specified for
+<code>Main</code>.</li>
+<li>Do not use a separate condition for each example supply.</li>
+<li>Do not add external libraries.</li>
+<li>Do not expose the mutable internal supply list.</li>
+<li>Preserve supply insertion order.</li>
+</ul>
+</section>
+
+<mbp:pagebreak />
+<section id="file-ai-worklog">
+
+<p class="source-path"><strong>Source file:</strong> <code>docs/AI-WORKLOG.md</code></p>
+
+<h1 id="ai-work-log">AI Work Log</h1>
+<p>Use this document to record the important AI-assisted steps taken
+during the exercise. Ordinary IDE completion does not need to be
+recorded.</p>
+<p>The purpose is not to preserve every message. Record the interactions
+that influenced the implementation or exposed a useful mistake.</p>
+<h2 id="interaction-1">Interaction 1</h2>
+<h3 id="goal-1">Goal</h3>
+<p>What single behavior were you trying to implement?</p>
+<h3 id="context-supplied">Context supplied</h3>
+<p>Which specification sections, source files, existing output, or error
+messages did you give the assistant?</p>
+<h3 id="prompt">Prompt</h3>
+<p>Paste or summarize the prompt.</p>
+<h3 id="result">Result</h3>
+<p>What did the assistant suggest or change?</p>
+<h3 id="review">Review</h3>
+<p>What did you inspect before accepting the result?</p>
+<h3 id="verification">Verification</h3>
+<p>How did you determine whether the change was correct?</p>
+<h3 id="follow-up-or-correction">Follow-up or correction</h3>
+<p>What, if anything, needed to be refined?</p>
+<hr />
+<h2 id="interaction-2">Interaction 2</h2>
+<h3 id="goal-2">Goal</h3>
+<h3 id="context-supplied-1">Context supplied</h3>
+<h3 id="prompt-1">Prompt</h3>
+<h3 id="result-1">Result</h3>
+<h3 id="review-1">Review</h3>
+<h3 id="verification-1">Verification</h3>
+<h3 id="follow-up-or-correction-1">Follow-up or correction</h3>
+<hr />
+<h2 id="final-reflection">Final reflection</h2>
+<p>Answer briefly after completing the exercise:</p>
+<ol type="1">
+<li>Which part of the specification was most important to include in the
+AI assistant's context?</li>
+<li>Identify one generated detail that required human review or
+correction.</li>
+<li>What evidence supports the claim that the final implementation is
+correct?</li>
+<li>When would restarting or reframing the conversation have been
+preferable to continuing it?</li>
+</ol>
+</section>
+
+<mbp:pagebreak />
+<section id="file-starter-code-plan">
+
+<p class="source-path"><strong>Source file:</strong> <code>docs/STARTER-CODE-PLAN.md</code></p>
+
+<h1 id="starter-code-plan">Starter Code Plan</h1>
+<p>This document defines the deliberately minimal Java project students
+receive at the beginning of the Day 1 exercise.</p>
+<h2 id="repository-structure-1">Repository structure</h2>
+<pre class="text"><code>cmps-fa26-first-example/
+├── .vscode/                 # VS Code tasks and Java settings
+├── .idea/                   # IntelliJ project and run configuration
+├── .settings/               # Eclipse Java settings
+├── nbproject/               # NetBeans free-form project metadata
+├── .classpath               # Eclipse classpath
+├── .project                 # Eclipse project definition
+├── build.xml                # NetBeans/Ant compile and run targets
+├── cmps-fa26-first-example.iml
+├── Main.launch              # Eclipse run configuration
+├── README.md
+├── docs/
+│   ├── SPEC.md
+│   ├── AI-WORKLOG.md
+│   ├── STARTER-CODE-PLAN.md
+│   ├── INSTRUCTOR-GUIDE.md
+│   └── IDE-SETUP.md
+└── src/
+    ├── Main.java
+    ├── Supply.java
+    └── Workshop.java</code></pre>
+<h2 id="initial-java-files">Initial Java files</h2>
+<p><code>Main.java</code> contains only a valid class and an empty
+<code>main</code> method:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> Main <span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">static</span> <span class="dt">void</span> <span class="fu">main</span><span class="op">(</span><span class="bu">String</span><span class="op">[]</span> args<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p><code>Supply.java</code> and <code>Workshop.java</code> contain
+empty, compiling class declarations:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> Supply <span class="op">{</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode java"><code class="sourceCode java"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">class</span> Workshop <span class="op">{</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Running the initial project should succeed and produce no output. The
+empty files make the starting point explicit while leaving all model and
+driver decisions visible during the live exercise.</p>
+<p>The committed IDE metadata is scaffolding only. It standardizes Java
+17, the <code>src</code> source root, the <code>out</code> build
+directory, and the <code>Main</code> entry point without supplying any
+domain implementation.</p>
+<h2 id="intended-completed-responsibilities">Intended completed
+responsibilities</h2>
+<p>The specification, rather than starter TODO comments, defines what
+must be built.</p>
+<h3 id="supplyjava"><code>Supply.java</code></h3>
+<p>Students add the fields, constructor, and accessors required by
+<code>SPEC.md</code>.</p>
+<h3 id="workshopjava"><code>Workshop.java</code></h3>
+<p>Students add the stored state, constructor, accessors, collection
+behavior, scaling behavior, and output formatting required by
+<code>SPEC.md</code>.</p>
+<h3 id="mainjava"><code>Main.java</code></h3>
+<p>Students complete the driver using the exact workshop and supply data
+in <code>SPEC.md</code>. The driver constructs objects and displays
+results but does not implement domain behavior itself.</p>
+<h2 id="what-not-to-include-initially">What not to include
+initially</h2>
+<ul>
+<li>a completed or partially implemented domain model;</li>
+<li>TODO comments that prescribe an implementation strategy;</li>
+<li>external dependencies or an unnecessary build framework;</li>
+<li>collection, search, sorting, persistence, or UI stages;</li>
+<li>an answer key on a student-visible branch;</li>
+<li>generated IDE output, <code>.class</code> files, or an
+<code>out/</code> directory; or</li>
+<li>tests that reveal the complete implementation strategy.</li>
+</ul>
+<h2 id="pre-class-acceptance-checklist">Pre-class acceptance
+checklist</h2>
+<ul>
+<li>A clean clone contains all three Java files.</li>
+<li>The project compiles under Java 17 or later.</li>
+<li>Running <code>Main</code> exits successfully and produces no
+output.</li>
+<li>The specification contains every API and behavior students need to
+build.</li>
+<li>The example data exercises integer, one-decimal, and rounded
+two-decimal output.</li>
+<li>A private instructor solution matches the required output
+exactly.</li>
+<li>No solution or partial solution is visible in the student
+repository.</li>
+</ul>
+</section>
+
+<mbp:pagebreak />
+<section id="file-instructor-guide">
+
+<p class="source-path"><strong>Source file:</strong> <code>docs/INSTRUCTOR-GUIDE.md</code></p>
+
+<h1 id="day-1-instructor-guide">Day 1 Instructor Guide</h1>
+<h2 id="purpose">Purpose</h2>
+<p>This example introduces the course's basic development loop:</p>
+<blockquote>
+<p>Read the specification, provide focused context, request one change,
+inspect the result, verify it, and commit it.</p>
+</blockquote>
+<p>The goal is not to demonstrate how quickly an AI assistant can
+generate an entire program. The goal is to make evidence-based use of
+generated code visible from the first class meeting.</p>
+<h2 id="preparation">Preparation</h2>
+<p>Before class:</p>
+<ul>
+<li>confirm the three empty Java starter files match
+<code>STARTER-CODE-PLAN.md</code>;</li>
+<li>verify the repository from a clean clone;</li>
+<li>confirm the project runs under Java 17 or later;</li>
+<li>retain the completed solution outside the student-visible
+repository;</li>
+<li>confirm that the final output matches <code>SPEC.md</code> exactly;
+and</li>
+<li>decide whether students will work individually or in pairs.</li>
+</ul>
+<h2 id="suggested-75-minute-sequence">Suggested 75-minute sequence</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Time</th>
+<th>Activity</th>
+<th>Teaching focus</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0–10 min</td>
+<td>Introduce the repository, clone it, and run the empty
+<code>Main</code></td>
+<td>A compiling program can still have no implemented behavior.</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10–20 min</td>
+<td>Read <code>SPEC.md</code> as a class</td>
+<td>The specification, not the model response, defines correctness.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">20–32 min</td>
+<td>Build <code>Supply</code> and the basic <code>Workshop</code>
+structure</td>
+<td>Translate nouns and required APIs from the specification into
+code.</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">32–44 min</td>
+<td>Implement <code>addSupply</code> and
+<code>totalSupplyCount</code></td>
+<td>Start with small, low-risk behaviors and inspect the diff.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">44–57 min</td>
+<td>Implement <code>scaleToAttendees</code></td>
+<td>Supply the formula and invalid-input rule as focused context.</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">57–67 min</td>
+<td>Implement formatting and string output</td>
+<td>Exact output exposes rounding, trailing-zero, and newline
+errors.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">67–73 min</td>
+<td>Complete <code>Main</code>, run it, and compare output</td>
+<td>Verification must produce evidence, not confidence alone.</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">73–75 min</td>
+<td>Complete the final reflection</td>
+<td>Name what context mattered and what required correction.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="recommended-live-prompts">Recommended live prompts</h2>
+<p>Prompts should be demonstrated as patterns, not as magic wording.</p>
+<h3 id="model-prompt">Model prompt</h3>
+<blockquote>
+<p>Read the model and required API sections of
+<code>docs/SPEC.md</code>. Implement only the <code>Supply</code> class
+and the basic <code>Workshop</code> fields, constructor, and accessors.
+Do not implement scaling or formatting yet. Explain how each addition
+maps to the specification.</p>
+</blockquote>
+<h3 id="first-behavior-prompt">First behavior prompt</h3>
+<blockquote>
+<p>Read the <code>addSupply</code> and <code>totalSupplyCount</code>
+sections of <code>docs/SPEC.md</code>. Implement only those behaviors in
+<code>Workshop</code>. Preserve insertion order and do not change
+<code>Main</code>. Explain the change briefly.</p>
+</blockquote>
+<h3 id="scaling-prompt">Scaling prompt</h3>
+<blockquote>
+<p>Implement only <code>scaleToAttendees</code> according to the
+supplied specification. Pay particular attention to floating-point
+division and the requirement that an invalid attendee count must not
+partially modify the workshop. Show me what I should verify after the
+change.</p>
+</blockquote>
+<h3 id="formatting-prompt">Formatting prompt</h3>
+<blockquote>
+<p>The output must follow the amount-formatting and
+<code>toString</code> sections exactly. Propose a small private
+formatting helper and implement <code>toString</code> using it. Do not
+print from <code>toString</code> and do not modify
+<code>Main</code>.</p>
+</blockquote>
+<h2 id="questions-to-ask-during-review">Questions to ask during
+review</h2>
+<ul>
+<li>Which part of the prompt came from the specification?</li>
+<li>Did the assistant change anything outside the requested method?</li>
+<li>Is the attendee ratio calculated using floating-point division?</li>
+<li>Does validation occur before any state is modified?</li>
+<li>Is supply insertion order preserved?</li>
+<li>Does <code>toString()</code> return a value or produce a side
+effect?</li>
+<li>How do we know <code>1.125</code> becomes <code>1.13</code>?</li>
+<li>Are trailing zeros and final newlines correct?</li>
+<li>Would the implementation work for supplies not present in the
+example?</li>
+</ul>
+<h2 id="likely-failure-modes">Likely failure modes</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Failure</th>
+<th>Observable symptom</th>
+<th>Useful response</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Integer division</td>
+<td>Amounts become zero or remain unchanged for some scales</td>
+<td>Revisit the formula and operand types.</td>
+</tr>
+<tr class="even">
+<td>Validation after mutation</td>
+<td>Invalid scaling leaves some amounts changed</td>
+<td>Move validation before all state changes.</td>
+</tr>
+<tr class="odd">
+<td>Hard-coded output</td>
+<td>Example works, but new workshops fail</td>
+<td>Ask whether behavior derives from stored data.</td>
+</tr>
+<tr class="even">
+<td>Printing inside <code>toString</code></td>
+<td>Duplicate output or an empty returned string</td>
+<td>Reinforce return values versus side effects.</td>
+</tr>
+<tr class="odd">
+<td>Uncontrolled decimal formatting</td>
+<td><code>48.0</code>, <code>1.125</code>, or locale-specific output
+appears</td>
+<td>Compare the formatting helper with every rule.</td>
+</tr>
+<tr class="even">
+<td>Over-broad AI edit</td>
+<td>Unrelated files or APIs change</td>
+<td>Revert the unrelated portion and narrow the prompt.</td>
+</tr>
+<tr class="odd">
+<td>One giant commit</td>
+<td>The development path cannot be reviewed</td>
+<td>Commit after each independently verified behavior.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="minimum-completion-target">Minimum completion target</h2>
+<p>By the end of class, students should have:</p>
+<ul>
+<li>complete <code>Supply</code> and <code>Workshop</code> models;</li>
+<li>a working implementation of all required <code>Workshop</code>
+methods;</li>
+<li>a completed example driver in <code>Main</code>;</li>
+<li>output matching <code>SPEC.md</code>;</li>
+<li>several small commits;</li>
+<li>at least two meaningful AI work-log entries; and</li>
+<li>a short final reflection identifying both useful context and a
+verification step.</li>
+</ul>
+<p>If time runs short, prioritize correct scaling and formatting over
+adding any new feature. Do not extend the domain during Day 1.</p>
+</section>
+
+<mbp:pagebreak />
+<section id="file-ide-setup">
+
+<p class="source-path"><strong>Source file:</strong> <code>docs/IDE-SETUP.md</code></p>
+
+<h1 id="ide-setup">IDE Setup</h1>
+<p>All supported configurations use Java 17, treat <code>src</code> as
+the source root, and write generated class files to <code>out</code>.
+The <code>out</code> directory is intentionally ignored by Git.</p>
+<h2 id="prerequisite">Prerequisite</h2>
+<p>Install a Java 17 or later JDK and confirm both commands are
+available:</p>
+<pre class="text"><code>javac -version
+java -version</code></pre>
+<h2 id="visual-studio-code">Visual Studio Code</h2>
+<ol type="1">
+<li>Open the repository folder in VS Code.</li>
+<li>Install the recommended Extension Pack for Java when prompted.</li>
+<li>Open <strong>Terminal → Run Task</strong>.</li>
+<li>Choose <strong>Run Main</strong>.</li>
+</ol>
+<p>The task first invokes <code>javac</code> to compile the three source
+files into <code>out</code>, then invokes
+<code>java -cp out Main</code>. <strong>Compile Java</strong> is also
+available as the default build task.</p>
+<h2 id="intellij-idea">IntelliJ IDEA</h2>
+<ol type="1">
+<li>Choose <strong>Open</strong> and select the repository folder.</li>
+<li>Select a Java 17 or later project SDK if IntelliJ requests one.</li>
+<li>Choose the shared <strong>Main</strong> run configuration.</li>
+<li>Click <strong>Run</strong>.</li>
+</ol>
+<p>The committed module file marks <code>src</code> as the source
+directory and uses <code>out</code> for compiler output.</p>
+<h2 id="eclipse">Eclipse</h2>
+<ol type="1">
+<li>Choose <strong>File → Import → General → Existing Projects into
+Workspace</strong>.</li>
+<li>Select the repository folder as the root directory.</li>
+<li>Finish the import.</li>
+<li>Run the shared <code>Main.launch</code> configuration or run
+<code>Main.java</code> as a Java application.</li>
+</ol>
+<p>The Eclipse project targets the JavaSE-17 execution environment.</p>
+<h2 id="netbeans">NetBeans</h2>
+<ol type="1">
+<li>Choose <strong>File → Open Project</strong>.</li>
+<li>Select the repository folder.</li>
+<li>Choose <strong>Run Project</strong>.</li>
+</ol>
+<p>NetBeans opens the project as an Ant free-form project. Its build,
+clean, and run actions delegate to <code>build.xml</code>.</p>
+<h2 id="direct-command-line">Direct command line</h2>
+<p>From the repository root, the same project can be run without an
+IDE:</p>
+<pre class="text"><code>javac -d out src/Main.java src/Supply.java src/Workshop.java
+java -cp out Main</code></pre>
+<p>The initial empty driver exits successfully without displaying
+output.</p>
+</section>
+
+<mbp:pagebreak />
+<section id="file-transcript">
+
+<p class="source-path"><strong>Source file:</strong> <code>docs/TRANSCRIPT.md</code></p>
+
+<h1 id="development-transcript-summary">Development Transcript
+Summary</h1>
+<p>This document summarizes the requests that shaped the Fall 2026 Day 1
+example and its repository scaffolding.</p>
+<p><a
+href="https://chatgpt.com/share/e/6a887630-c4ac-8012-a768-a2fb96842b85?ogimg=plain">Open
+the shared ChatGPT conversation</a></p>
+<h2 id="1-review-the-previous-day-1-example">1. Review the previous Day
+1 example</h2>
+<p>The completed Spring 2026 recipe example was provided as a reference,
+and three alternative domains were requested for Fall 2026. The
+suggested options were a Workshop Supply Planner, a Trail Expedition
+Planner, and a Community Garden Planner. The Workshop Supply Planner was
+recommended because it preserves the original learning progression while
+giving the exercise different content.</p>
+<h2 id="2-define-the-workshop-supply-planner-content">2. Define the
+Workshop Supply Planner content</h2>
+<p>The next request asked what information should be present in the
+repository when class begins. This established the workshop model,
+required methods, scaling and formatting rules, exact expected output,
+student workflow, AI work log, and intended starter-code structure.</p>
+<h2 id="3-build-the-day-1-documentation">3. Build the Day 1
+documentation</h2>
+<p>The new Fall 2026 repository was provided and a documentation-only
+first version was requested. The initial repository content included the
+student README, behavioral specification, AI work-log template,
+starter-code plan, and 75-minute instructor guide.</p>
+<h2 id="4-draft-the-moodle-repository-description">4. Draft the Moodle
+repository description</h2>
+<p>An expanded Moodle blurb was requested to explain the live
+specification-to-implementation exercise, the incremental AI-assisted
+workflow, and the option for students to follow along or revisit the
+repository later.</p>
+<h2 id="5-return-the-moodle-text-as-plain-paragraphs">5. Return the
+Moodle text as plain paragraphs</h2>
+<p>The Moodle blurb was revised to contain only paragraph text without
+HTML tags.</p>
+<h2 id="6-add-empty-java-starter-files">6. Add empty Java starter
+files</h2>
+<p>An empty main driver and empty domain-class files were requested.
+<code>Main.java</code>, <code>Supply.java</code>, and
+<code>Workshop.java</code> were added as compiling shells, and the
+documentation was revised so that the entire model and driver are
+constructed live from the specification.</p>
+<h2 id="7-add-multi-ide-project-configuration">7. Add multi-IDE project
+configuration</h2>
+<p>Project files were requested for VS Code, IntelliJ IDEA, and at least
+two additional IDEs. Support was added for:</p>
+<ul>
+<li>VS Code using explicit <code>javac</code> and <code>java</code> CLI
+tasks;</li>
+<li>IntelliJ IDEA using a module and shared run configuration;</li>
+<li>Eclipse using project, classpath, Java 17, encoding, and launch
+files; and</li>
+<li>NetBeans using a free-form Ant project.</li>
+</ul>
+<p>All configurations use <code>src</code> as the source root,
+<code>out</code> as the generated-output directory, Java 17, and
+<code>Main</code> as the entry point.</p>
+<h2 id="8-attempt-ide-execution-in-virtual-machines">8. Attempt IDE
+execution in virtual machines</h2>
+<p>The configurations were requested to be opened and run in separate
+IDE virtual machines. The available workspace did not provide VM or
+desktop control and did not have the four IDEs installed, so full GUI
+import-and-run testing was not possible. The available validation
+instead confirmed JSON and XML syntax, checked cross-file references,
+compiled all Java sources with the installed Java 17 compiler module,
+and ran the empty <code>Main</code> successfully with no output.</p>
+<h2 id="9-evaluate-maven-and-gradle">9. Evaluate Maven and Gradle</h2>
+<p>The value of adding Maven or Gradle was considered. The
+recommendation was to omit both from this Day 1 example because the
+project has only three source files, no packages, no dependencies, and
+no tests. Adding either alongside direct Java tasks and the NetBeans Ant
+file would create competing build paths. If a build tool becomes useful
+later, one tool—preferably Maven unless Gradle is a course
+objective—should replace redundant build metadata rather than being
+added beside it.</p>
+<h2 id="10-preserve-this-development-summary">10. Preserve this
+development summary</h2>
+<p>The final request was to add this transcript summary and link it to
+the shared ChatGPT conversation so the design history and major
+decisions remain discoverable from the repository.</p>
+</section>
+
+<mbp:pagebreak />
+</body>
+</html>
