@@ -1,12 +1,11 @@
 # Starter Code Plan
 
-This document defines the Java files that should be present before students begin the Day 1 exercise. It is an implementation plan, not a completed solution.
+This document defines the deliberately minimal Java project students receive at the beginning of the Day 1 exercise.
 
-## Intended repository structure
+## Repository structure
 
 ```text
 cmps-fa26-first-example/
-├── .gitignore
 ├── README.md
 ├── docs/
 │   ├── SPEC.md
@@ -19,76 +18,64 @@ cmps-fa26-first-example/
     └── Workshop.java
 ```
 
-## `Supply.java`
+## Initial Java files
 
-Provide this class fully implemented. It represents a single supply entry and contains:
+`Main.java` contains only a valid class and an empty `main` method:
 
-- a final `String name` field;
-- a mutable `double amount` field;
-- a constructor accepting the name and amount;
-- `getName()`;
-- `getAmount()`; and
-- `setAmount(double amount)`.
+```java
+public class Main {
+    public static void main(String[] args) {
+    }
+}
+```
 
-Students should not need to modify `Supply.java` on Day 1. Completing it in advance keeps the exercise focused on one primary class.
+`Supply.java` and `Workshop.java` contain empty, compiling class declarations:
 
-## `Main.java`
+```java
+public class Supply {
+}
+```
 
-Provide this class fully implemented. It must:
+```java
+public class Workshop {
+}
+```
 
-1. Create `AI-Assisted Prototyping Workshop` for 24 attendees.
-2. Add these supplies in order:
-   - 48 index cards;
-   - 6 marker packs;
-   - 3 rolls of painter's tape;
-   - 0.75 reams of printer paper; and
-   - 24 feedback forms.
-3. Display the workshop.
-4. Display the supply-entry count.
-5. Scale the workshop to 36 attendees.
-6. Display the scaled workshop.
+Running the initial project should succeed and produce no output. The empty files make the starting point explicit while leaving all model and driver decisions visible during the live exercise.
 
-`Main.java` must not contain TODO comments. Students should be told not to edit its example data.
+## Intended completed responsibilities
 
-## `Workshop.java`
+The specification, rather than starter TODO comments, defines what must be built.
 
-Provide the following completed structure:
+### `Supply.java`
 
-- a final `String title` field;
-- an `int attendees` field;
-- a final `List<Supply> supplies` field;
-- a constructor that initializes all fields;
-- `getTitle()`;
-- `getAttendees()`; and
-- `getSupplies()`, returning a defensive copy.
+Students add the fields, constructor, and accessors required by `SPEC.md`.
 
-Provide compiling placeholders with TODO comments for:
+### `Workshop.java`
 
-- `addSupply(String supplyName, double amount)`;
-- `totalSupplyCount()`;
-- `scaleToAttendees(int newAttendeeCount)`;
-- `toString()`; and
-- `toPrettyString()`.
+Students add the stored state, constructor, accessors, collection behavior, scaling behavior, and output formatting required by `SPEC.md`.
 
-The initial project must compile and run. Placeholder methods may return neutral values, so the initial output should be incomplete or incorrect without crashing.
+### `Main.java`
+
+Students complete the driver using the exact workshop and supply data in `SPEC.md`. The driver constructs objects and displays results but does not implement domain behavior itself.
 
 ## What not to include initially
 
-- a completed `Workshop` implementation;
-- external dependencies or a build framework not needed for three Java files;
+- a completed or partially implemented domain model;
+- TODO comments that prescribe an implementation strategy;
+- external dependencies or an unnecessary build framework;
 - collection, search, sorting, persistence, or UI stages;
-- an answer key on a visible branch;
+- an answer key on a student-visible branch;
 - generated IDE output, `.class` files, or an `out/` directory; or
 - tests that reveal the complete implementation strategy.
 
 ## Pre-class acceptance checklist
 
-- A clean clone opens without missing source files.
-- The configured Java version is documented and available in the classroom.
-- `Main` compiles and runs before any TODO is implemented.
-- Initial output is visibly incomplete but does not throw an unexpected exception.
-- Every TODO maps directly to a section of `docs/SPEC.md`.
-- The example data produces integer, one-decimal, and rounded two-decimal output.
-- The completed instructor version matches the required output exactly.
-- The instructor solution is stored privately outside the student-visible repository.
+- A clean clone contains all three Java files.
+- The project compiles under Java 17 or later.
+- Running `Main` exits successfully and produces no output.
+- The specification contains every API and behavior students need to build.
+- The example data exercises integer, one-decimal, and rounded two-decimal output.
+- A private instructor solution matches the required output exactly.
+- No solution or partial solution is visible in the student repository.
 
