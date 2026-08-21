@@ -4,7 +4,7 @@
 
 Implement the `Supply` and `Workshop` models, then complete the example driver in `Main` so that running the program produces the required output exactly.
 
-Behavior belonging to the domain model must be implemented in the domain classes. `Main` should construct objects and display results; it must not reproduce the domain behavior with hard-coded output.
+[Behavior](TECHNICAL-REFERENCE.md#implementation-and-behavior) belonging to the [domain model](TECHNICAL-REFERENCE.md#model-and-domain-model) must be implemented in the domain classes. `Main` should construct objects and display results; it must not reproduce the domain behavior with [hard-coded](TECHNICAL-REFERENCE.md#hard-coded-value) output.
 
 ## Workshop model
 
@@ -19,12 +19,12 @@ Each supply has:
 - a name stored as a `String`; and
 - an amount stored as a `double`.
 
-## Required `Supply` API
+## Required `Supply` [API](TECHNICAL-REFERENCE.md#api)
 
 Implement `Supply` with:
 
-- a final `String name` field;
-- a mutable `double amount` field;
+- a [final](TECHNICAL-REFERENCE.md#state-and-mutability) `String name` [field](TECHNICAL-REFERENCE.md#field-constructor-and-accessor);
+- a [mutable](TECHNICAL-REFERENCE.md#state-and-mutability) `double amount` field;
 - `Supply(String name, double amount)`;
 - `getName()`;
 - `getAmount()`; and
@@ -40,7 +40,7 @@ Implement `Workshop` with:
 - `Workshop(String title, int attendees)`;
 - `getTitle()`;
 - `getAttendees()`; and
-- `getSupplies()`, returning a defensive copy rather than the mutable internal list.
+- `getSupplies()`, returning a [defensive copy](TECHNICAL-REFERENCE.md#defensive-copy) rather than the mutable internal list.
 
 ## Required methods
 
@@ -52,11 +52,11 @@ Implement these methods in `Workshop.java`:
 - `toString()`
 - `toPrettyString()`
 
-Private helper methods may be added when they make the implementation clearer.
+Private [helper methods](TECHNICAL-REFERENCE.md#helper-method) may be added when they make the implementation clearer.
 
 ## Supply-order rules
 
-- Preserve the order in which supplies are added.
+- Preserve the [insertion order](TECHNICAL-REFERENCE.md#insertion-order) of the supplies.
 - Adding a supply must not replace or reorder an existing supply.
 - Two supplies with the same name remain two separate entries in this exercise.
 
@@ -88,9 +88,9 @@ If the current attendee count is `a` and the new attendee count is `n`, multiply
 n / a
 ```
 
-The calculation must use floating-point division. After scaling the supplies, update the workshop's attendee count.
+The calculation must use [floating-point division](TECHNICAL-REFERENCE.md#floating-point-division). After scaling the supplies, update the workshop's attendee count.
 
-If `newAttendeeCount` is less than or equal to zero, throw an `IllegalArgumentException`. An invalid request must not partially modify the workshop.
+If `newAttendeeCount` is less than or equal to zero, throw an [`IllegalArgumentException`](TECHNICAL-REFERENCE.md#exception-and-validation). An invalid request must not partially modify the workshop.
 
 ## Amount formatting
 
@@ -120,7 +120,7 @@ Return a multiline string in this format:
 - <amount> <supply name>
 ```
 
-Do not add a blank line at the beginning or end of the returned string. `toString()` must return the formatted value; it must not print directly to the console.
+Do not add a blank line at the beginning or end of the returned string. `toString()` must return the formatted value; printing directly to the console would be an unintended [side effect](TECHNICAL-REFERENCE.md#side-effect).
 
 ## `toPrettyString`
 
