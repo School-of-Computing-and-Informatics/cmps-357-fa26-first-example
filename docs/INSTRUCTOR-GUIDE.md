@@ -12,7 +12,7 @@ The goal is not to demonstrate how quickly an AI assistant can generate an entir
 
 Before class:
 
-- add the Java starter files described in `STARTER-CODE-PLAN.md`;
+- confirm the three empty Java starter files match `STARTER-CODE-PLAN.md`;
 - verify the repository from a clean clone;
 - confirm the project runs under Java 17 or later;
 - retain the completed solution outside the student-visible repository;
@@ -23,22 +23,26 @@ Before class:
 
 | Time | Activity | Teaching focus |
 |---:|---|---|
-| 0–10 min | Introduce the repository, clone it, and run `Main` | A compiling program can still be behaviorally incomplete. |
+| 0–10 min | Introduce the repository, clone it, and run the empty `Main` | A compiling program can still have no implemented behavior. |
 | 10–20 min | Read `SPEC.md` as a class | The specification, not the model response, defines correctness. |
-| 20–30 min | Implement `addSupply` and `totalSupplyCount` | Start with small, low-risk behaviors and inspect the diff. |
-| 30–48 min | Implement `scaleToAttendees` | Supply the formula and invalid-input rule as focused context. |
-| 48–63 min | Implement formatting and `toString` | Exact output exposes rounding, trailing-zero, and newline errors. |
-| 63–69 min | Implement `toPrettyString` and run the complete example | Prefer reuse over duplicated formatting logic. |
-| 69–73 min | Compare output and review commits | Verification must produce evidence, not confidence alone. |
+| 20–32 min | Build `Supply` and the basic `Workshop` structure | Translate nouns and required APIs from the specification into code. |
+| 32–44 min | Implement `addSupply` and `totalSupplyCount` | Start with small, low-risk behaviors and inspect the diff. |
+| 44–57 min | Implement `scaleToAttendees` | Supply the formula and invalid-input rule as focused context. |
+| 57–67 min | Implement formatting and string output | Exact output exposes rounding, trailing-zero, and newline errors. |
+| 67–73 min | Complete `Main`, run it, and compare output | Verification must produce evidence, not confidence alone. |
 | 73–75 min | Complete the final reflection | Name what context mattered and what required correction. |
 
 ## Recommended live prompts
 
 Prompts should be demonstrated as patterns, not as magic wording.
 
-### First focused prompt
+### Model prompt
 
-> Read the `addSupply` section of `docs/SPEC.md` and the current `Supply.java` and `Workshop.java`. Implement only `addSupply`. Preserve insertion order and do not change other methods. Explain the change briefly.
+> Read the model and required API sections of `docs/SPEC.md`. Implement only the `Supply` class and the basic `Workshop` fields, constructor, and accessors. Do not implement scaling or formatting yet. Explain how each addition maps to the specification.
+
+### First behavior prompt
+
+> Read the `addSupply` and `totalSupplyCount` sections of `docs/SPEC.md`. Implement only those behaviors in `Workshop`. Preserve insertion order and do not change `Main`. Explain the change briefly.
 
 ### Scaling prompt
 
@@ -76,11 +80,12 @@ Prompts should be demonstrated as patterns, not as magic wording.
 
 By the end of class, students should have:
 
+- complete `Supply` and `Workshop` models;
 - a working implementation of all required `Workshop` methods;
+- a completed example driver in `Main`;
 - output matching `SPEC.md`;
 - several small commits;
 - at least two meaningful AI work-log entries; and
 - a short final reflection identifying both useful context and a verification step.
 
 If time runs short, prioritize correct scaling and formatting over adding any new feature. Do not extend the domain during Day 1.
-
