@@ -47,6 +47,7 @@ Students should not ask an AI assistant to finish the entire project in one requ
 - [`docs/STARTER-CODE-PLAN.md`](docs/STARTER-CODE-PLAN.md) — required shape of the starter project
 - [`docs/INSTRUCTOR-GUIDE.md`](docs/INSTRUCTOR-GUIDE.md) — suggested classroom sequence and discussion points
 - [`docs/IDE-SETUP.md`](docs/IDE-SETUP.md) — setup and run instructions for VS Code, IntelliJ IDEA, Eclipse, and NetBeans
+- [`docs/KINDLE.html`](docs/KINDLE.html) — Kindle-ready compilation of every Markdown document
 - [`docs/TRANSCRIPT.md`](docs/TRANSCRIPT.md) — summary and shared conversation for the repository's development
 
 ## IDE support
@@ -81,6 +82,7 @@ cmps-fa26-first-example/
 │   ├── AI-WORKLOG.md                   # Template for prompts, reviews, verification, and reflection
 │   ├── IDE-SETUP.md                    # Instructions for the four supported IDEs and command line
 │   ├── INSTRUCTOR-GUIDE.md             # Suggested 75-minute lesson plan and review questions
+│   ├── KINDLE.html                     # Kindle-ready compilation with contents links and page breaks
 │   ├── SPEC.md                         # Source of truth for required behavior and exact output
 │   ├── STARTER-CODE-PLAN.md            # Defines the intended empty starting state and responsibilities
 │   └── TRANSCRIPT.md                   # Summarizes the requests and decisions behind the repository
