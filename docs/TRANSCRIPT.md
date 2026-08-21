@@ -51,3 +51,10 @@ The value of adding Maven or Gradle was considered. The recommendation was to om
 
 The final request was to add this transcript summary and link it to the shared ChatGPT conversation so the design history and major decisions remain discoverable from the repository.
 
+## 11. Document the repository structure
+
+An annotated repository tree was requested for the README. The diagram was expanded to cover every committed folder and file and to explain the purpose of the Java sources, documentation, and four IDE configurations.
+
+## 12. Create a Kindle-ready documentation compilation
+
+A single HTML file was requested containing every Markdown file in the repository. The generated document begins with a linked table of contents, assigns a stable anchor to each source file, and uses the Kindle `<mbp:pagebreak />` tag after the table of contents and after every included file.
