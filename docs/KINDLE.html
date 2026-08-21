@@ -115,6 +115,8 @@ href="#file-instructor-guide"><code>docs/INSTRUCTOR-GUIDE.md</code></a>
 <li><a href="#file-ide-setup"><code>docs/IDE-SETUP.md</code></a> — setup
 and run instructions for VS Code, IntelliJ IDEA, Eclipse, and
 NetBeans</li>
+<li><a href="docs/KINDLE.html"><code>docs/KINDLE.html</code></a> —
+Kindle-ready compilation of every Markdown document</li>
 <li><a href="#file-transcript"><code>docs/TRANSCRIPT.md</code></a> —
 summary and shared conversation for the repository's development</li>
 </ul>
@@ -150,6 +152,7 @@ directory.</p>
 │   ├── AI-WORKLOG.md                   # Template for prompts, reviews, verification, and reflection
 │   ├── IDE-SETUP.md                    # Instructions for the four supported IDEs and command line
 │   ├── INSTRUCTOR-GUIDE.md             # Suggested 75-minute lesson plan and review questions
+│   ├── KINDLE.html                     # Kindle-ready compilation with contents links and page breaks
 │   ├── SPEC.md                         # Source of truth for required behavior and exact output
 │   ├── STARTER-CODE-PLAN.md            # Defines the intended empty starting state and responsibilities
 │   └── TRANSCRIPT.md                   # Summarizes the requests and decisions behind the repository
@@ -866,6 +869,19 @@ development summary</h2>
 <p>The final request was to add this transcript summary and link it to
 the shared ChatGPT conversation so the design history and major
 decisions remain discoverable from the repository.</p>
+<h2 id="11-document-the-repository-structure">11. Document the
+repository structure</h2>
+<p>An annotated repository tree was requested for the README. The
+diagram was expanded to cover every committed folder and file and to
+explain the purpose of the Java sources, documentation, and four IDE
+configurations.</p>
+<h2 id="12-create-a-kindle-ready-documentation-compilation">12. Create a
+Kindle-ready documentation compilation</h2>
+<p>A single HTML file was requested containing every Markdown file in
+the repository. The generated document begins with a linked table of
+contents, assigns a stable anchor to each source file, and uses the
+Kindle <code>&lt;mbp:pagebreak /&gt;</code> tag after the table of
+contents and after every included file.</p>
 </section>
 
 <mbp:pagebreak />
