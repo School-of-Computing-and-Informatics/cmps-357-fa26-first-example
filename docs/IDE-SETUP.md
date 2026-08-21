@@ -1,10 +1,10 @@
 # IDE Setup
 
-All supported configurations use Java 17, treat `src` as the source root, and write generated class files to `out`. The `out` directory is intentionally ignored by Git.
+All supported configurations use Java 17, treat `src` as the [source root](TECHNICAL-REFERENCE.md#source-root-and-output-directory), and write generated [class files](TECHNICAL-REFERENCE.md#class-file-and-classpath) to `out`. The `out` directory is intentionally ignored by Git.
 
 ## Prerequisite
 
-Install a Java 17 or later JDK and confirm both commands are available:
+Install a Java 17 or later [JDK](TECHNICAL-REFERENCE.md#jdk-and-sdk) and confirm both commands are available:
 
 ```text
 javac -version
@@ -18,16 +18,16 @@ java -version
 3. Open **Terminal → Run Task**.
 4. Choose **Run Main**.
 
-The task first invokes `javac` to compile the three source files into `out`, then invokes `java -cp out Main`. **Compile Java** is also available as the default build task.
+The task first invokes `javac` to [compile](TECHNICAL-REFERENCE.md#compile-build-and-run) the three source files into `out`, then invokes `java -cp out Main`. The `-cp` option supplies the [classpath](TECHNICAL-REFERENCE.md#class-file-and-classpath). **Compile Java** is also available as the default build task.
 
 ## IntelliJ IDEA
 
 1. Choose **Open** and select the repository folder.
-2. Select a Java 17 or later project SDK if IntelliJ requests one.
+2. Select a Java 17 or later project [SDK](TECHNICAL-REFERENCE.md#jdk-and-sdk) if IntelliJ requests one.
 3. Choose the shared **Main** run configuration.
 4. Click **Run**.
 
-The committed module file marks `src` as the source directory and uses `out` for compiler output.
+The committed [module](TECHNICAL-REFERENCE.md#project-metadata-module-and-run-configuration) file marks `src` as the source directory and uses `out` for compiler output.
 
 ## Eclipse
 
@@ -44,9 +44,9 @@ The Eclipse project targets the JavaSE-17 execution environment.
 2. Select the repository folder.
 3. Choose **Run Project**.
 
-NetBeans opens the project as an Ant free-form project. Its build, clean, and run actions delegate to `build.xml`.
+NetBeans opens the project as an [Ant](TECHNICAL-REFERENCE.md#ant-and-build-file) free-form project. Its build, clean, and run actions use the targets defined in `build.xml`.
 
-## Direct command line
+## Direct [command line](TECHNICAL-REFERENCE.md#cli)
 
 From the repository root, the same project can be run without an IDE:
 
@@ -55,5 +55,5 @@ javac -d out src/Main.java src/Supply.java src/Workshop.java
 java -cp out Main
 ```
 
-The initial empty driver exits successfully without displaying output.
+The initial empty [driver](TECHNICAL-REFERENCE.md#main-method-driver-and-entry-point) exits successfully without displaying output.
 
