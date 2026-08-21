@@ -17,7 +17,7 @@ During this exercise, students will practice:
 
 ## Day 1 workflow
 
-1. Clone the repository and open it in IntelliJ IDEA.
+1. Clone the repository and open it in a supported Java IDE.
 2. Read [`docs/SPEC.md`](docs/SPEC.md) before prompting an AI assistant.
 3. Run `Main` and observe that the project compiles but produces no output.
 4. Add the data model and required methods in small, reviewable steps.
@@ -46,5 +46,17 @@ Students should not ask an AI assistant to finish the entire project in one requ
 - [`docs/AI-WORKLOG.md`](docs/AI-WORKLOG.md) — student record of AI-assisted work
 - [`docs/STARTER-CODE-PLAN.md`](docs/STARTER-CODE-PLAN.md) — required shape of the starter project
 - [`docs/INSTRUCTOR-GUIDE.md`](docs/INSTRUCTOR-GUIDE.md) — suggested classroom sequence and discussion points
+- [`docs/IDE-SETUP.md`](docs/IDE-SETUP.md) — setup and run instructions for VS Code, IntelliJ IDEA, Eclipse, and NetBeans
+
+## IDE support
+
+Project files are included for:
+
+- Visual Studio Code, using explicit Java CLI compile and run tasks;
+- IntelliJ IDEA;
+- Eclipse; and
+- NetBeans, using the included Ant build file.
+
+See [`docs/IDE-SETUP.md`](docs/IDE-SETUP.md) for instructions. All configurations target Java 17 and share the same `src` source directory and `out` build directory.
 
 If generated code and the specification disagree, the specification wins.

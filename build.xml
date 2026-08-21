@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="cmps-fa26-first-example" default="run" basedir=".">
+  <property file="nbproject/project.properties" />
+
+  <target name="init">
+    <mkdir dir="${build.dir}" />
+  </target>
+
+  <target name="compile" depends="init">
+    <javac srcdir="${src.dir}"
+           destdir="${build.dir}"
+           source="17"
+           target="17"
+           encoding="${source.encoding}"
+           includeantruntime="false" />
+  </target>
+
+  <target name="run" depends="compile">
+    <java classname="Main" fork="true" failonerror="true">
+      <classpath path="${build.dir}" />
+    </java>
+  </target>
+
+  <target name="clean">
+    <delete dir="${build.dir}" />
+  </target>
+</project>
+

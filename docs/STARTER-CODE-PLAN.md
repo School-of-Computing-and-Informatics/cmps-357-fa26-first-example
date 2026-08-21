@@ -6,12 +6,22 @@ This document defines the deliberately minimal Java project students receive at 
 
 ```text
 cmps-fa26-first-example/
+├── .vscode/                 # VS Code tasks and Java settings
+├── .idea/                   # IntelliJ project and run configuration
+├── .settings/               # Eclipse Java settings
+├── nbproject/               # NetBeans free-form project metadata
+├── .classpath               # Eclipse classpath
+├── .project                 # Eclipse project definition
+├── build.xml                # NetBeans/Ant compile and run targets
+├── cmps-fa26-first-example.iml
+├── Main.launch              # Eclipse run configuration
 ├── README.md
 ├── docs/
 │   ├── SPEC.md
 │   ├── AI-WORKLOG.md
 │   ├── STARTER-CODE-PLAN.md
-│   └── INSTRUCTOR-GUIDE.md
+│   ├── INSTRUCTOR-GUIDE.md
+│   └── IDE-SETUP.md
 └── src/
     ├── Main.java
     ├── Supply.java
@@ -42,6 +52,8 @@ public class Workshop {
 ```
 
 Running the initial project should succeed and produce no output. The empty files make the starting point explicit while leaving all model and driver decisions visible during the live exercise.
+
+The committed IDE metadata is scaffolding only. It standardizes Java 17, the `src` source root, the `out` build directory, and the `Main` entry point without supplying any domain implementation.
 
 ## Intended completed responsibilities
 
@@ -78,4 +90,3 @@ Students complete the driver using the exact workshop and supply data in `SPEC.m
 - The example data exercises integer, one-decimal, and rounded two-decimal output.
 - A private instructor solution matches the required output exactly.
 - No solution or partial solution is visible in the student repository.
-
