@@ -60,4 +60,46 @@ Project files are included for:
 
 See [`docs/IDE-SETUP.md`](docs/IDE-SETUP.md) for instructions. All configurations target Java 17 and share the same `src` source directory and `out` build directory.
 
+## Repository structure
+
+```text
+cmps-fa26-first-example/
+├── .idea/                              # Shared IntelliJ IDEA project configuration
+│   ├── runConfigurations/              # IntelliJ run configurations available to all users
+│   │   └── Main.xml                    # Builds the module and launches the Main class
+│   ├── compiler.xml                    # Sends IntelliJ compiler output to the out directory
+│   ├── misc.xml                        # Sets the IntelliJ project language level to Java 17
+│   └── modules.xml                     # Registers the committed IntelliJ module file
+├── .settings/                          # Shared Eclipse workspace-independent settings
+│   ├── org.eclipse.core.resources.prefs # Uses UTF-8 for Eclipse project resources
+│   └── org.eclipse.jdt.core.prefs      # Sets Eclipse compiler compliance to Java 17
+├── .vscode/                            # Shared Visual Studio Code workspace configuration
+│   ├── extensions.json                 # Recommends the Extension Pack for Java
+│   ├── settings.json                   # Declares src and out as the Java source and output paths
+│   └── tasks.json                      # Defines javac compilation and java execution tasks
+├── docs/                               # Specifications, setup guidance, and process records
+│   ├── AI-WORKLOG.md                   # Template for prompts, reviews, verification, and reflection
+│   ├── IDE-SETUP.md                    # Instructions for the four supported IDEs and command line
+│   ├── INSTRUCTOR-GUIDE.md             # Suggested 75-minute lesson plan and review questions
+│   ├── SPEC.md                         # Source of truth for required behavior and exact output
+│   ├── STARTER-CODE-PLAN.md            # Defines the intended empty starting state and responsibilities
+│   └── TRANSCRIPT.md                   # Summarizes the requests and decisions behind the repository
+├── nbproject/                          # NetBeans free-form Ant project configuration
+│   ├── project.properties              # Defines the src, out, and UTF-8 project properties
+│   └── project.xml                     # Maps NetBeans build, clean, and run actions to Ant targets
+├── src/                                # Java source root used by every supported environment
+│   ├── Main.java                       # Empty command-line driver completed during class
+│   ├── Supply.java                     # Empty supply-model class completed during class
+│   └── Workshop.java                   # Empty workshop-model class completed during class
+├── .classpath                          # Maps Eclipse source, Java 17 runtime, and output paths
+├── .gitignore                          # Excludes generated classes, build output, and local IDE state
+├── .project                            # Identifies the repository as an Eclipse Java project
+├── Main.launch                         # Shared Eclipse launch configuration for Main
+├── README.md                           # Introduces the exercise, workflow, documentation, and IDEs
+├── build.xml                           # Compiles, runs, and cleans the project for NetBeans and Ant
+└── cmps-fa26-first-example.iml         # Defines the IntelliJ Java module and its source root
+```
+
+The generated `out/` directory is not shown because it is created locally by the selected build path and excluded from version control.
+
 If generated code and the specification disagree, the specification wins.
