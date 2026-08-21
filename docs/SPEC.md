@@ -2,9 +2,9 @@
 
 ## Goal
 
-Implement the missing behavior in `Workshop.java` so that running `Main` produces the required output exactly.
+Implement the `Supply` and `Workshop` models, then complete the example driver in `Main` so that running the program produces the required output exactly.
 
-Do not modify `Main.java` merely to make its output appear correct. The required behavior belongs in `Workshop.java`.
+Behavior belonging to the domain model must be implemented in the domain classes. `Main` should construct objects and display results; it must not reproduce the domain behavior with hard-coded output.
 
 ## Workshop model
 
@@ -18,6 +18,29 @@ Each supply has:
 
 - a name stored as a `String`; and
 - an amount stored as a `double`.
+
+## Required `Supply` API
+
+Implement `Supply` with:
+
+- a final `String name` field;
+- a mutable `double amount` field;
+- `Supply(String name, double amount)`;
+- `getName()`;
+- `getAmount()`; and
+- `setAmount(double amount)`.
+
+## Required `Workshop` structure
+
+Implement `Workshop` with:
+
+- a final `String title` field;
+- an `int attendees` field;
+- a final `List<Supply> supplies` field;
+- `Workshop(String title, int attendees)`;
+- `getTitle()`;
+- `getAttendees()`; and
+- `getSupplies()`, returning a defensive copy rather than the mutable internal list.
 
 ## Required methods
 
@@ -103,6 +126,22 @@ Do not add a blank line at the beginning or end of the returned string. `toStrin
 
 Return a user-friendly multiline representation of the workshop. For this first exercise, `toPrettyString()` returns the same content as `toString()`.
 
+## Required `Main` driver
+
+Complete the empty `main` method so that it:
+
+1. Creates `AI-Assisted Prototyping Workshop` for 24 attendees.
+2. Adds these supplies in order:
+   - 48 index cards;
+   - 6 marker packs;
+   - 3 rolls of painter's tape;
+   - 0.75 reams of printer paper; and
+   - 24 feedback forms.
+3. Displays the workshop.
+4. Displays the number of supply entries.
+5. Scales the workshop to 36 attendees.
+6. Displays the scaled workshop.
+
 ## Required output
 
 Running `Main` must produce exactly:
@@ -131,10 +170,9 @@ The printer-paper amount scales from `0.75` to `1.125`, which displays as `1.13`
 
 ## Constraints
 
-- Do not change the example data in `Main`.
 - Do not hard-code the required output.
+- Use the exact example data and order specified for `Main`.
 - Do not use a separate condition for each example supply.
 - Do not add external libraries.
 - Do not expose the mutable internal supply list.
 - Preserve supply insertion order.
-
