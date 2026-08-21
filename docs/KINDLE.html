@@ -39,6 +39,8 @@ docs/STARTER-CODE-PLAN.md</a></li>
 <li><a href="#file-instructor-guide">Day 1 Instructor Guide —
 docs/INSTRUCTOR-GUIDE.md</a></li>
 <li><a href="#file-ide-setup">IDE Setup — docs/IDE-SETUP.md</a></li>
+<li><a href="#file-technical-reference">Technical Reference —
+docs/TECHNICAL-REFERENCE.md</a></li>
 <li><a href="#file-transcript">Development Transcript Summary —
 docs/TRANSCRIPT.md</a></li>
 </ul>
@@ -51,34 +53,46 @@ docs/TRANSCRIPT.md</a></li>
 Example</h1>
 <p>This repository contains the first in-class example for <strong>CMPS
 357: Accelerated Software Development Using AI Tools</strong>.</p>
-<p>The example uses a small <strong>Workshop Supply Planner</strong> to
-introduce specification-driven development with an AI coding assistant.
-Students begin with a compiling Java project containing an empty main
-driver and empty domain-class shells. The goal is to build the required
-model and behavior incrementally until the program output matches the
-written specification.</p>
+<p>The exercise uses a small <strong>Workshop Supply Planner</strong>.
+Students start with three empty Java classes in a project that already
+compiles. During class, they will use written requirements and an AI
+coding assistant to add the program's data and actions in small steps,
+checking each change until the output exactly matches the
+requirements.</p>
 <h2 id="learning-goals">Learning goals</h2>
 <p>During this exercise, students will practice:</p>
 <ul>
-<li>reading a software specification before changing code;</li>
-<li>identifying the smallest relevant context for an AI assistant;</li>
+<li>reading a software <a href="#specification">specification</a> before
+changing code;</li>
+<li>identifying the smallest relevant <a
+href="#ai-context-and-feedback-cycle">context</a> for an AI
+assistant;</li>
 <li>implementing and verifying one behavior at a time;</li>
 <li>reviewing generated code instead of accepting it automatically;</li>
 <li>comparing actual output with exact required output; and</li>
-<li>making small Git commits with meaningful messages.</li>
+<li>making small Git <a href="#clone-fork-branch-and-commit">commits</a>
+with meaningful messages.</li>
 </ul>
 <h2 id="day-1-workflow">Day 1 workflow</h2>
 <ol type="1">
-<li>Clone the repository and open it in a supported Java IDE.</li>
+<li><a href="#clone-fork-branch-and-commit">Clone</a> the repository and
+open it in a supported Java <a href="#ide">IDE</a>.
+<ol type="1">
+<li>If a student is familiar with Git, they may consider making their
+own <a href="#clone-fork-branch-and-commit">fork</a>.</li>
+<li>Otherwise, student changes can be made in a local <a
+href="#clone-fork-branch-and-commit">branch</a> as demonstrated in
+class.</li>
+</ol></li>
 <li>Read <a href="#file-spec"><code>docs/SPEC.md</code></a> before
 prompting an AI assistant.</li>
-<li>Run <code>Main</code> and observe that the project compiles but
-produces no output.</li>
-<li>Add the data model and required methods in small, reviewable
-steps.</li>
+<li>Run <code>Main</code> and observe that the project <a
+href="#compile-build-and-run">compiles</a> but produces no output.</li>
+<li>Add the data <a href="#model-and-domain-model">model</a> and
+required <a href="#api">methods</a> in small, reviewable steps.</li>
 <li>Implement one behavior at a time.</li>
-<li>Run the program and inspect the diff after every meaningful
-change.</li>
+<li>Run the program and inspect the <a href="#diff">diff</a> after every
+meaningful change.</li>
 <li>Compare the final output character-for-character with the
 specification.</li>
 <li>Record important prompts, decisions, and verification steps in <a
@@ -88,18 +102,21 @@ href="#file-ai-worklog"><code>docs/AI-WORKLOG.md</code></a>.</li>
 <h2 id="suggested-implementation-order">Suggested implementation
 order</h2>
 <ol type="1">
-<li><code>Supply</code> fields, constructor, and accessors</li>
+<li><code>Supply</code> <a
+href="#field-constructor-and-accessor">fields, constructor, and
+accessors</a></li>
 <li><code>Workshop</code> fields, constructor, and accessors</li>
 <li><code>addSupply</code></li>
 <li><code>totalSupplyCount</code></li>
 <li><code>scaleToAttendees</code></li>
-<li>private amount-formatting helper</li>
+<li>private amount-formatting <a href="#helper-method">helper</a></li>
 <li><code>toString</code> and <code>toPrettyString</code></li>
 <li>the example sequence in <code>Main</code></li>
 </ol>
 <p>Students should not ask an AI assistant to finish the entire project
 in one request. The exercise is designed around focused prompts, short
-feedback cycles, and deliberate verification.</p>
+<a href="#ai-context-and-feedback-cycle">feedback cycles</a>, and
+deliberate verification.</p>
 <h2 id="documentation">Documentation</h2>
 <ul>
 <li><a href="#file-spec"><code>docs/SPEC.md</code></a> — source of truth
@@ -115,6 +132,10 @@ href="#file-instructor-guide"><code>docs/INSTRUCTOR-GUIDE.md</code></a>
 <li><a href="#file-ide-setup"><code>docs/IDE-SETUP.md</code></a> — setup
 and run instructions for VS Code, IntelliJ IDEA, Eclipse, and
 NetBeans</li>
+<li><a
+href="#file-technical-reference"><code>docs/TECHNICAL-REFERENCE.md</code></a>
+— refresher for Java, Git, IDE, build, and AI-development
+terminology</li>
 <li><a href="docs/KINDLE.html"><code>docs/KINDLE.html</code></a> —
 Kindle-ready compilation of every Markdown document</li>
 <li><a href="#file-transcript"><code>docs/TRANSCRIPT.md</code></a> —
@@ -123,16 +144,17 @@ summary and shared conversation for the repository's development</li>
 <h2 id="ide-support">IDE support</h2>
 <p>Project files are included for:</p>
 <ul>
-<li>Visual Studio Code, using explicit Java CLI compile and run
-tasks;</li>
+<li>Visual Studio Code, using explicit Java <a href="#cli">CLI</a>
+compile and run tasks;</li>
 <li>IntelliJ IDEA;</li>
 <li>Eclipse; and</li>
-<li>NetBeans, using the included Ant build file.</li>
+<li>NetBeans, using the included <a href="#ant-and-build-file">Ant build
+file</a>.</li>
 </ul>
 <p>See <a href="#file-ide-setup"><code>docs/IDE-SETUP.md</code></a> for
 instructions. All configurations target Java 17 and share the same
-<code>src</code> source directory and <code>out</code> build
-directory.</p>
+<code>src</code> <a href="#source-root-and-output-directory">source
+directory</a> and <code>out</code> build directory.</p>
 <h2 id="repository-structure">Repository structure</h2>
 <pre class="text"><code>cmps-fa26-first-example/
 ├── .idea/                              # Shared IntelliJ IDEA project configuration
@@ -155,6 +177,7 @@ directory.</p>
 │   ├── KINDLE.html                     # Kindle-ready compilation with contents links and page breaks
 │   ├── SPEC.md                         # Source of truth for required behavior and exact output
 │   ├── STARTER-CODE-PLAN.md            # Defines the intended empty starting state and responsibilities
+│   ├── TECHNICAL-REFERENCE.md           # Refreshes Java, Git, IDE, build, and AI-development terms
 │   └── TRANSCRIPT.md                   # Summarizes the requests and decisions behind the repository
 ├── nbproject/                          # NetBeans free-form Ant project configuration
 │   ├── project.properties              # Defines the src, out, and UTF-8 project properties
@@ -188,10 +211,11 @@ Specification</h1>
 <p>Implement the <code>Supply</code> and <code>Workshop</code> models,
 then complete the example driver in <code>Main</code> so that running
 the program produces the required output exactly.</p>
-<p>Behavior belonging to the domain model must be implemented in the
-domain classes. <code>Main</code> should construct objects and display
-results; it must not reproduce the domain behavior with hard-coded
-output.</p>
+<p><a href="#implementation-and-behavior">Behavior</a> belonging to the
+<a href="#model-and-domain-model">domain model</a> must be implemented
+in the domain classes. <code>Main</code> should construct objects and
+display results; it must not reproduce the domain behavior with <a
+href="#hard-coded-value">hard-coded</a> output.</p>
 <h2 id="workshop-model">Workshop model</h2>
 <p>A workshop has:</p>
 <ul>
@@ -205,11 +229,14 @@ added.</li>
 <li>a name stored as a <code>String</code>; and</li>
 <li>an amount stored as a <code>double</code>.</li>
 </ul>
-<h2 id="required-supply-api">Required <code>Supply</code> API</h2>
+<h2 id="required-supply-api">Required <code>Supply</code> <a
+href="#api">API</a></h2>
 <p>Implement <code>Supply</code> with:</p>
 <ul>
-<li>a final <code>String name</code> field;</li>
-<li>a mutable <code>double amount</code> field;</li>
+<li>a <a href="#state-and-mutability">final</a> <code>String name</code>
+<a href="#field-constructor-and-accessor">field</a>;</li>
+<li>a <a href="#state-and-mutability">mutable</a>
+<code>double amount</code> field;</li>
 <li><code>Supply(String name, double amount)</code>;</li>
 <li><code>getName()</code>;</li>
 <li><code>getAmount()</code>; and</li>
@@ -225,8 +252,9 @@ structure</h2>
 <li><code>Workshop(String title, int attendees)</code>;</li>
 <li><code>getTitle()</code>;</li>
 <li><code>getAttendees()</code>; and</li>
-<li><code>getSupplies()</code>, returning a defensive copy rather than
-the mutable internal list.</li>
+<li><code>getSupplies()</code>, returning a <a
+href="#defensive-copy">defensive copy</a> rather than the mutable
+internal list.</li>
 </ul>
 <h2 id="required-methods">Required methods</h2>
 <p>Implement these methods in <code>Workshop.java</code>:</p>
@@ -237,11 +265,12 @@ the mutable internal list.</li>
 <li><code>toString()</code></li>
 <li><code>toPrettyString()</code></li>
 </ul>
-<p>Private helper methods may be added when they make the implementation
-clearer.</p>
+<p>Private <a href="#helper-method">helper methods</a> may be added when
+they make the implementation clearer.</p>
 <h2 id="supply-order-rules">Supply-order rules</h2>
 <ul>
-<li>Preserve the order in which supplies are added.</li>
+<li>Preserve the <a href="#insertion-order">insertion order</a> of the
+supplies.</li>
 <li>Adding a supply must not replace or reorder an existing supply.</li>
 <li>Two supplies with the same name remain two separate entries in this
 exercise.</li>
@@ -265,11 +294,13 @@ count.</p>
 <p>If the current attendee count is <code>a</code> and the new attendee
 count is <code>n</code>, multiply each amount by:</p>
 <pre class="text"><code>n / a</code></pre>
-<p>The calculation must use floating-point division. After scaling the
-supplies, update the workshop's attendee count.</p>
+<p>The calculation must use <a
+href="#floating-point-division">floating-point division</a>. After
+scaling the supplies, update the workshop's attendee count.</p>
 <p>If <code>newAttendeeCount</code> is less than or equal to zero, throw
-an <code>IllegalArgumentException</code>. An invalid request must not
-partially modify the workshop.</p>
+an <a
+href="#exception-and-validation"><code>IllegalArgumentException</code></a>.
+An invalid request must not partially modify the workshop.</p>
 <h2 id="amount-formatting">Amount formatting</h2>
 <p>When displaying an amount:</p>
 <ul>
@@ -316,8 +347,9 @@ point;</li>
 - &lt;amount&gt; &lt;supply name&gt;
 - &lt;amount&gt; &lt;supply name&gt;</code></pre>
 <p>Do not add a blank line at the beginning or end of the returned
-string. <code>toString()</code> must return the formatted value; it must
-not print directly to the console.</p>
+string. <code>toString()</code> must return the formatted value;
+printing directly to the console would be an unintended <a
+href="#side-effect">side effect</a>.</p>
 <h2 id="toprettystring"><code>toPrettyString</code></h2>
 <p>Return a user-friendly multiline representation of the workshop. For
 this first exercise, <code>toPrettyString()</code> returns the same
@@ -474,10 +506,14 @@ class="sourceCode java"><code class="sourceCode java"><span id="cb9-1"><a href="
 <p>Running the initial project should succeed and produce no output. The
 empty files make the starting point explicit while leaving all model and
 driver decisions visible during the live exercise.</p>
-<p>The committed IDE metadata is scaffolding only. It standardizes Java
-17, the <code>src</code> source root, the <code>out</code> build
-directory, and the <code>Main</code> entry point without supplying any
-domain implementation.</p>
+<p>The committed <a
+href="#project-metadata-module-and-run-configuration">IDE metadata</a>
+is <a href="#scaffolding">scaffolding</a> only. It standardizes Java 17,
+the <code>src</code> <a href="#source-root-and-output-directory">source
+root</a>, the <code>out</code> build directory, and the
+<code>Main</code> <a href="#main-method-driver-and-entry-point">entry
+point</a> without supplying any <a
+href="#implementation-and-behavior">domain implementation</a>.</p>
 <h2 id="intended-completed-responsibilities">Intended completed
 responsibilities</h2>
 <p>The specification, rather than starter TODO comments, defines what
@@ -490,18 +526,24 @@ must be built.</p>
 behavior, scaling behavior, and output formatting required by
 <code>SPEC.md</code>.</p>
 <h3 id="mainjava"><code>Main.java</code></h3>
-<p>Students complete the driver using the exact workshop and supply data
-in <code>SPEC.md</code>. The driver constructs objects and displays
-results but does not implement domain behavior itself.</p>
+<p>Students complete the <a
+href="#main-method-driver-and-entry-point">driver</a> using the exact
+workshop and supply data in <code>SPEC.md</code>. The driver constructs
+objects and displays results but does not implement domain behavior
+itself.</p>
 <h2 id="what-not-to-include-initially">What not to include
 initially</h2>
 <ul>
 <li>a completed or partially implemented domain model;</li>
 <li>TODO comments that prescribe an implementation strategy;</li>
-<li>external dependencies or an unnecessary build framework;</li>
-<li>collection, search, sorting, persistence, or UI stages;</li>
-<li>an answer key on a student-visible branch;</li>
-<li>generated IDE output, <code>.class</code> files, or an
+<li>external <a href="#dependency-and-build-framework">dependencies or
+an unnecessary build framework</a>;</li>
+<li>collection, search, sorting, <a
+href="#persistence-and-ui">persistence, or UI</a> stages;</li>
+<li>an answer key on a student-visible <a
+href="#clone-fork-branch-and-commit">branch</a>;</li>
+<li>generated IDE output, <a
+href="#class-file-and-classpath"><code>.class</code> files</a>, or an
 <code>out/</code> directory; or</li>
 <li>tests that reveal the complete implementation strategy.</li>
 </ul>
@@ -728,11 +770,13 @@ adding any new feature. Do not extend the domain during Day 1.</p>
 
 <h1 id="ide-setup">IDE Setup</h1>
 <p>All supported configurations use Java 17, treat <code>src</code> as
-the source root, and write generated class files to <code>out</code>.
-The <code>out</code> directory is intentionally ignored by Git.</p>
+the <a href="#source-root-and-output-directory">source root</a>, and
+write generated <a href="#class-file-and-classpath">class files</a> to
+<code>out</code>. The <code>out</code> directory is intentionally
+ignored by Git.</p>
 <h2 id="prerequisite">Prerequisite</h2>
-<p>Install a Java 17 or later JDK and confirm both commands are
-available:</p>
+<p>Install a Java 17 or later <a href="#jdk-and-sdk">JDK</a> and confirm
+both commands are available:</p>
 <pre class="text"><code>javac -version
 java -version</code></pre>
 <h2 id="visual-studio-code">Visual Studio Code</h2>
@@ -742,19 +786,24 @@ java -version</code></pre>
 <li>Open <strong>Terminal → Run Task</strong>.</li>
 <li>Choose <strong>Run Main</strong>.</li>
 </ol>
-<p>The task first invokes <code>javac</code> to compile the three source
-files into <code>out</code>, then invokes
-<code>java -cp out Main</code>. <strong>Compile Java</strong> is also
-available as the default build task.</p>
+<p>The task first invokes <code>javac</code> to <a
+href="#compile-build-and-run">compile</a> the three source files into
+<code>out</code>, then invokes <code>java -cp out Main</code>. The
+<code>-cp</code> option supplies the <a
+href="#class-file-and-classpath">classpath</a>. <strong>Compile
+Java</strong> is also available as the default build task.</p>
 <h2 id="intellij-idea">IntelliJ IDEA</h2>
 <ol type="1">
 <li>Choose <strong>Open</strong> and select the repository folder.</li>
-<li>Select a Java 17 or later project SDK if IntelliJ requests one.</li>
+<li>Select a Java 17 or later project <a href="#jdk-and-sdk">SDK</a> if
+IntelliJ requests one.</li>
 <li>Choose the shared <strong>Main</strong> run configuration.</li>
 <li>Click <strong>Run</strong>.</li>
 </ol>
-<p>The committed module file marks <code>src</code> as the source
-directory and uses <code>out</code> for compiler output.</p>
+<p>The committed <a
+href="#project-metadata-module-and-run-configuration">module</a> file
+marks <code>src</code> as the source directory and uses <code>out</code>
+for compiler output.</p>
 <h2 id="eclipse">Eclipse</h2>
 <ol type="1">
 <li>Choose <strong>File → Import → General → Existing Projects into
@@ -771,15 +820,188 @@ Workspace</strong>.</li>
 <li>Select the repository folder.</li>
 <li>Choose <strong>Run Project</strong>.</li>
 </ol>
-<p>NetBeans opens the project as an Ant free-form project. Its build,
-clean, and run actions delegate to <code>build.xml</code>.</p>
-<h2 id="direct-command-line">Direct command line</h2>
+<p>NetBeans opens the project as an <a
+href="#ant-and-build-file">Ant</a> free-form project. Its build, clean,
+and run actions use the targets defined in <code>build.xml</code>.</p>
+<h2 id="direct-command-line">Direct <a href="#cli">command line</a></h2>
 <p>From the repository root, the same project can be run without an
 IDE:</p>
 <pre class="text"><code>javac -d out src/Main.java src/Supply.java src/Workshop.java
 java -cp out Main</code></pre>
-<p>The initial empty driver exits successfully without displaying
-output.</p>
+<p>The initial empty <a
+href="#main-method-driver-and-entry-point">driver</a> exits successfully
+without displaying output.</p>
+</section>
+
+<mbp:pagebreak />
+<section id="file-technical-reference">
+
+<p class="source-path"><strong>Source file:</strong> <code>docs/TECHNICAL-REFERENCE.md</code></p>
+
+<h1 id="technical-reference">Technical Reference</h1>
+<p>This reference refreshes software-development terms used throughout
+the Day 1 example. It is intended as a quick reminder, not as a
+substitute for the Java, Git, or IDE documentation used in earlier
+courses.</p>
+<h2 id="repository">Repository</h2>
+<p>A repository is a project tracked by Git. It contains the project
+files and the history of committed changes.</p>
+<h2 id="specification">Specification</h2>
+<p>A specification describes the required behavior of a program. In this
+exercise, <code>docs/SPEC.md</code> is the authoritative description of
+what the finished program must do.</p>
+<h2 id="implementation-and-behavior">Implementation and behavior</h2>
+<p>An implementation is the code that fulfills a requirement. Behavior
+is what the program does when that code runs, including its returned
+values, state changes, errors, and displayed output.</p>
+<h2 id="model-and-domain-model">Model and domain model</h2>
+<p>A model is a code representation of information and related behavior.
+A domain model represents concepts from the problem being solved; here,
+<code>Workshop</code> and <code>Supply</code> represent the
+workshop-planning domain.</p>
+<h2 id="ide">IDE</h2>
+<p>An integrated development environment (IDE) combines source-code
+editing with tools for compiling, running, debugging, and navigating a
+project. This repository supports VS Code, IntelliJ IDEA, Eclipse, and
+NetBeans.</p>
+<h2 id="compile-build-and-run">Compile, build, and run</h2>
+<ul>
+<li><strong>Compile:</strong> translate Java source code into JVM class
+files.</li>
+<li><strong>Build:</strong> perform the steps needed to prepare the
+program, commonly including compilation.</li>
+<li><strong>Run:</strong> start the compiled program.</li>
+</ul>
+<h2 id="main-method-driver-and-entry-point">Main method, driver, and
+entry point</h2>
+<p>The <code>main</code> method is where this Java command-line program
+begins running. A driver is code that creates objects and calls their
+methods to demonstrate or coordinate behavior. An entry point is the
+location where program execution begins; in this project, it is
+<code>Main.main</code>.</p>
+<h2 id="class-and-class-shell">Class and class shell</h2>
+<p>A class defines a Java type and may contain fields, constructors, and
+methods. A class shell is a valid but mostly empty class declaration
+that will be completed later.</p>
+<h2 id="scaffolding">Scaffolding</h2>
+<p>Scaffolding is prearranged project structure or configuration that
+supports later development without providing the completed program
+behavior. The IDE files and empty Java classes serve as scaffolding in
+this repository.</p>
+<h2 id="api">API</h2>
+<p>An application programming interface (API) is the set of
+constructors, methods, parameters, and return values through which other
+code uses a class or component.</p>
+<h2 id="field-constructor-and-accessor">Field, constructor, and
+accessor</h2>
+<ul>
+<li>A <strong>field</strong> stores part of an object's state.</li>
+<li>A <strong>constructor</strong> initializes a newly created
+object.</li>
+<li>An <strong>accessor</strong> is a method that reads stored data,
+commonly called a getter. A setter changes stored data.</li>
+</ul>
+<h2 id="state-and-mutability">State and mutability</h2>
+<p>State is the data currently stored by an object. Mutable state can
+change after the object is created; immutable state cannot. Java's
+<code>final</code> keyword prevents a field from being assigned a
+different value after initialization, although an object referenced by
+that field may still be mutable.</p>
+<h2 id="defensive-copy">Defensive copy</h2>
+<p>A defensive copy is a new collection or object returned in place of
+mutable internal data. It prevents calling code from changing an
+object's internal state without using the object's methods.</p>
+<h2 id="helper-method">Helper method</h2>
+<p>A helper method performs a focused internal task for other methods. A
+private helper can be used only inside its own class.</p>
+<h2 id="clone-fork-branch-and-commit">Clone, fork, branch, and
+commit</h2>
+<ul>
+<li><strong>Clone:</strong> make a local copy of a repository.</li>
+<li><strong>Fork:</strong> create a separate GitHub-hosted copy of
+another repository under a different account or organization.</li>
+<li><strong>Branch:</strong> maintain a named line of development within
+a repository.</li>
+<li><strong>Commit:</strong> record a related set of changes in Git
+history with a message.</li>
+</ul>
+<h2 id="diff">Diff</h2>
+<p>A diff shows the lines added, removed, or changed between two
+versions. Reviewing a diff helps detect unintended edits before a commit
+is accepted.</p>
+<h2 id="ai-context-and-feedback-cycle">AI context and feedback
+cycle</h2>
+<p>Context is the information supplied to an AI assistant, such as
+requirements, source files, existing output, and error messages. A
+feedback cycle is one round of requesting a change, reviewing it,
+running the program, and using the result to guide the next request.</p>
+<h2 id="cli">CLI</h2>
+<p>A command-line interface (CLI) accepts text commands in a terminal.
+The VS Code tasks in this repository run the Java compiler and program
+through their CLIs.</p>
+<h2 id="jdk-and-sdk">JDK and SDK</h2>
+<p>The Java Development Kit (JDK) contains the compiler and other tools
+required to develop Java programs. IDEs sometimes use the broader term
+software development kit (SDK) when selecting the JDK for a project.</p>
+<h2 id="source-root-and-output-directory">Source root and output
+directory</h2>
+<p>The source root is the directory an IDE or build tool treats as the
+beginning of the source-code structure; this project uses
+<code>src</code>. The output directory stores generated build results;
+this project uses <code>out</code> for compiled class files.</p>
+<h2 id="class-file-and-classpath">Class file and classpath</h2>
+<p>A <code>.class</code> file contains compiled Java bytecode for the
+JVM. The classpath is the set of locations Java searches for compiled
+classes and libraries when compiling or running a program.</p>
+<h2 id="project-metadata-module-and-run-configuration">Project metadata,
+module, and run configuration</h2>
+<p>Project metadata consists of tool-specific files that describe how an
+IDE should open and build a project. A module is an IDE grouping of
+source code and settings. A run configuration records how an IDE should
+start a program, including its entry point and classpath.</p>
+<h2 id="ant-and-build-file">Ant and build file</h2>
+<p>Apache Ant is a Java build tool. Its <code>build.xml</code> file
+defines named targets such as compile, run, and clean. NetBeans uses
+that file for this repository.</p>
+<h2 id="dependency-and-build-framework">Dependency and build
+framework</h2>
+<p>A dependency is external code required by a project. A build
+framework or build tool automates tasks such as compilation, testing,
+packaging, and dependency management. This example intentionally has no
+external dependencies and does not require Maven or Gradle.</p>
+<h2 id="floating-point-division">Floating-point division</h2>
+<p>Floating-point division preserves a fractional result, such as
+<code>36.0 / 24.0 = 1.5</code>. Integer division discards the fractional
+portion when both operands are integers.</p>
+<h2 id="exception-and-validation">Exception and validation</h2>
+<p>Validation checks whether input satisfies required rules before the
+program uses it. An exception signals that normal execution cannot
+continue; this specification requires
+<code>IllegalArgumentException</code> for a nonpositive attendee
+count.</p>
+<h2 id="insertion-order">Insertion order</h2>
+<p>Insertion order is the sequence in which items were added to a
+collection. Preserving it means later operations return or display those
+items in the same sequence.</p>
+<h2 id="hard-coded-value">Hard-coded value</h2>
+<p>A hard-coded value is written directly into the implementation
+instead of being calculated from stored data or supplied input.
+Hard-coding the example output would make only that one example appear
+correct.</p>
+<h2 id="side-effect">Side effect</h2>
+<p>A side effect is an observable change beyond returning a value, such
+as printing output or modifying an object's state. In this exercise,
+<code>toString()</code> returns text and must not print it directly.</p>
+<h2 id="persistence-and-ui">Persistence and UI</h2>
+<p>Persistence saves data so it remains available after the program
+ends, commonly in a file or database. A user interface (UI) is how a
+person interacts with a program; examples include command-line,
+graphical, and web interfaces.</p>
+<h2 id="gui-and-virtual-machine">GUI and virtual machine</h2>
+<p>A graphical user interface (GUI) uses visual controls such as
+windows, menus, and buttons. A virtual machine (VM), in the repository
+transcript, means an isolated computer environment used to install and
+test an IDE; it does not mean the Java Virtual Machine (JVM).</p>
 </section>
 
 <mbp:pagebreak />
@@ -882,6 +1104,14 @@ the repository. The generated document begins with a linked table of
 contents, assigns a stable anchor to each source file, and uses the
 Kindle <code>&lt;mbp:pagebreak /&gt;</code> tag after the table of
 contents and after every included file.</p>
+<h2 id="13-add-a-technical-terminology-refresher">13. Add a technical
+terminology refresher</h2>
+<p>The README's opening was simplified for students who have completed
+three software-development courses but may need a refresher. A technical
+reference was added for Java, Git, IDE, build, and AI-development
+terminology, and student-facing documents now deep-link technical terms
+to the relevant definitions instead of removing the terms from the
+course materials.</p>
 </section>
 
 <mbp:pagebreak />
