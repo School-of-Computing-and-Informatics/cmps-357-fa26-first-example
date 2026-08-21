@@ -47,6 +47,7 @@ Students should not ask an AI assistant to finish the entire project in one requ
 - [`docs/STARTER-CODE-PLAN.md`](docs/STARTER-CODE-PLAN.md) — required shape of the starter project
 - [`docs/INSTRUCTOR-GUIDE.md`](docs/INSTRUCTOR-GUIDE.md) — suggested classroom sequence and discussion points
 - [`docs/IDE-SETUP.md`](docs/IDE-SETUP.md) — setup and run instructions for VS Code, IntelliJ IDEA, Eclipse, and NetBeans
+- [`docs/TRANSCRIPT.md`](docs/TRANSCRIPT.md) — summary and shared conversation for the repository's development
 
 ## IDE support
 
