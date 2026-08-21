@@ -58,3 +58,7 @@ An annotated repository tree was requested for the README. The diagram was expan
 ## 12. Create a Kindle-ready documentation compilation
 
 A single HTML file was requested containing every Markdown file in the repository. The generated document begins with a linked table of contents, assigns a stable anchor to each source file, and uses the Kindle `<mbp:pagebreak />` tag after the table of contents and after every included file.
+
+## 13. Add a technical terminology refresher
+
+The README's opening was simplified for students who have completed three software-development courses but may need a refresher. A technical reference was added for Java, Git, IDE, build, and AI-development terminology, and student-facing documents now deep-link technical terms to the relevant definitions instead of removing the terms from the course materials.
