@@ -49,6 +49,7 @@ Students should not ask an AI assistant to finish the entire project in one requ
 - [`docs/STARTER-CODE-PLAN.md`](docs/STARTER-CODE-PLAN.md) — required shape of the starter project
 - [`docs/INSTRUCTOR-GUIDE.md`](docs/INSTRUCTOR-GUIDE.md) — suggested classroom sequence and discussion points
 - [`docs/IDE-SETUP.md`](docs/IDE-SETUP.md) — setup and run instructions for VS Code, IntelliJ IDEA, Eclipse, and NetBeans
+- [`GETTING_STARTED_INTELLIJ.md`](GETTING_STARTED_INTELLIJ.md) — IntelliJ-specific Java 17, source-root, run-configuration, and source-control guidance
 - [`docs/TECHNICAL-REFERENCE.md`](docs/TECHNICAL-REFERENCE.md) — refresher for Java, Git, IDE, build, and AI-development terminology
 - [`docs/KINDLE.html`](docs/KINDLE.html) — Kindle-ready compilation of the main course documentation
 - [`docs/TRANSCRIPT.md`](docs/TRANSCRIPT.md) — summary and shared conversation for the repository's development
@@ -62,7 +63,7 @@ Project files are included for:
 - Eclipse; and
 - NetBeans, using the included [Ant build file](docs/TECHNICAL-REFERENCE.md#ant-and-build-file).
 
-See [`docs/IDE-SETUP.md`](docs/IDE-SETUP.md) for instructions. All configurations target Java 17 and share the same `src` [source directory](docs/TECHNICAL-REFERENCE.md#source-root-and-output-directory) and `out` build directory.
+See [`docs/IDE-SETUP.md`](docs/IDE-SETUP.md) for general instructions. IntelliJ users should also see [`GETTING_STARTED_INTELLIJ.md`](GETTING_STARTED_INTELLIJ.md), especially if IntelliJ cannot find `Main`. All configurations target Java 17 and share the same `src` [source directory](docs/TECHNICAL-REFERENCE.md#source-root-and-output-directory) and `out` build directory.
 
 ## Repository structure
 
@@ -88,7 +89,7 @@ cmps-fa26-first-example/
 │   ├── KINDLE.html                     # Kindle-ready compilation with contents links and page breaks
 │   ├── SPEC.md                         # Source of truth for required behavior and exact output
 │   ├── STARTER-CODE-PLAN.md            # Defines the intended empty starting state and responsibilities
-│   ├── TECHNICAL-REFERENCE.md           # Refreshes Java, Git, IDE, build, and AI-development terms
+│   ├── TECHNICAL-REFERENCE.md          # Refreshes Java, Git, IDE, build, and AI-development terms
 │   └── TRANSCRIPT.md                   # Summarizes the requests and decisions behind the repository
 ├── nbproject/                          # NetBeans free-form Ant project configuration
 │   ├── project.properties              # Defines the src, out, and UTF-8 project properties
@@ -100,6 +101,7 @@ cmps-fa26-first-example/
 ├── .classpath                          # Maps Eclipse source, Java 17 runtime, and output paths
 ├── .gitignore                          # Excludes generated classes, build output, and local IDE state
 ├── .project                            # Identifies the repository as an Eclipse Java project
+├── GETTING_STARTED_INTELLIJ.md         # IntelliJ startup and source-control guidance
 ├── Main.launch                         # Shared Eclipse launch configuration for Main
 ├── README.md                           # Introduces the exercise, workflow, documentation, and IDEs
 ├── build.xml                           # Compiles, runs, and cleans the project for NetBeans and Ant
