@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+  <type>org.netbeans.modules.ant.freeform</type>
+  <configuration>
+    <general-data xmlns="http://www.netbeans.org/ns/freeform-project/2">
+      <name>cmps-fa26-first-example</name>
+      <properties>
+        <property-file>nbproject/project.properties</property-file>
+      </properties>
+      <folders>
+        <source-folder>
+          <label>Source Packages</label>
+          <type>java</type>
+          <location>${src.dir}</location>
+          <encoding>${source.encoding}</encoding>
+        </source-folder>
+      </folders>
+      <ide-actions>
+        <action name="build">
+          <target>compile</target>
+        </action>
+        <action name="clean">
+          <target>clean</target>
+        </action>
+        <action name="run">
+          <target>run</target>
+        </action>
+        <action name="rebuild">
+          <target>clean</target>
+          <target>compile</target>
+        </action>
+      </ide-actions>
+      <view>
+        <items>
+          <source-folder style="packages">
+            <label>Source Packages</label>
+            <location>${src.dir}</location>
+          </source-folder>
+          <source-file>
+            <location>build.xml</location>
+          </source-file>
+        </items>
+        <context-menu>
+          <ide-action name="build" />
+          <ide-action name="rebuild" />
+          <ide-action name="clean" />
+          <ide-action name="run" />
+        </context-menu>
+      </view>
+      <subprojects />
+    </general-data>
+    <java-data xmlns="http://www.netbeans.org/ns/freeform-project-java/4">
+      <compilation-unit>
+        <package-root>${src.dir}</package-root>
+        <source-level>17</source-level>
+      </compilation-unit>
+    </java-data>
+  </configuration>
+</project>
+

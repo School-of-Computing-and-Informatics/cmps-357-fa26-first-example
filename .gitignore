@@ -1,0 +1,15 @@
+# Java build output
+/out/
+/bin/
+/build/
+/dist/
+*.class
+
+# IDE-specific user state
+/.idea/workspace.xml
+/.idea/tasks.xml
+/.idea/shelf/
+/.idea/*.iml
+/.metadata/
+/nbproject/private/
+
