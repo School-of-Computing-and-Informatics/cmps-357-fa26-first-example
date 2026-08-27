@@ -42,9 +42,12 @@ During this exercise, students will practice:
 
 Students should not ask an AI assistant to finish the entire project in one request. The exercise is designed around focused prompts, short [feedback cycles](docs/TECHNICAL-REFERENCE.md#ai-context-and-feedback-cycle), and deliberate verification.
 
+See [`docs/STAGES.md`](docs/STAGES.md) for the expanded implementation sequence, stage-specific checks, and status relative to `main`. Run `bash scripts/run-stage-tests.sh` locally after each stage. The same stage-aware Java 17 tests run automatically on pull requests targeting `main`.
+
 ## Documentation
 
 - [`docs/SPEC.md`](docs/SPEC.md) — source of truth for required behavior
+- [`docs/STAGES.md`](docs/STAGES.md) — expanded implementation order, current status, and testing regime
 - [`docs/AI-WORKLOG.md`](docs/AI-WORKLOG.md) — student record of AI-assisted work
 - [`docs/STARTER-CODE-PLAN.md`](docs/STARTER-CODE-PLAN.md) — required shape of the starter project
 - [`docs/INSTRUCTOR-GUIDE.md`](docs/INSTRUCTOR-GUIDE.md) — suggested classroom sequence and discussion points
@@ -69,6 +72,9 @@ See [`docs/IDE-SETUP.md`](docs/IDE-SETUP.md) for general instructions. IntelliJ 
 
 ```text
 cmps-fa26-first-example/
+├── .github/                            # Repository automation
+│   └── workflows/
+│       └── stage-tests.yml             # Runs stage-aware Java tests on pull requests to main
 ├── .idea/                              # Shared IntelliJ IDEA project configuration
 │   ├── runConfigurations/              # IntelliJ run configurations available to all users
 │   │   └── Main.xml                    # Builds the module and launches the Main class
@@ -89,15 +95,20 @@ cmps-fa26-first-example/
 │   ├── KINDLE.html                     # Kindle-ready compilation with contents links and page breaks
 │   ├── SPEC.md                         # Source of truth for required behavior and exact output
 │   ├── STARTER-CODE-PLAN.md            # Defines the intended empty starting state and responsibilities
+│   ├── STAGES.md                       # Expands the implementation sequence and verification regime
 │   ├── TECHNICAL-REFERENCE.md          # Refreshes Java, Git, IDE, build, and AI-development terms
 │   └── TRANSCRIPT.md                   # Summarizes the requests and decisions behind the repository
 ├── nbproject/                          # NetBeans free-form Ant project configuration
 │   ├── project.properties              # Defines the src, out, and UTF-8 project properties
 │   └── project.xml                     # Maps NetBeans build, clean, and run actions to Ant targets
+├── scripts/                            # Shared local and automated commands
+│   └── run-stage-tests.sh              # Compiles and executes the stage-aware test runner
 ├── src/                                # Java source root used by every supported environment
 │   ├── Main.java                       # Empty command-line driver completed during class
 │   ├── Supply.java                     # Empty supply-model class completed during class
 │   └── Workshop.java                   # Empty workshop-model class completed during class
+├── tests/                              # Dependency-free incremental verification
+│   └── StageTestRunner.java            # Detects and tests each implemented stage under Java 17
 ├── .classpath                          # Maps Eclipse source, Java 17 runtime, and output paths
 ├── .gitignore                          # Excludes generated classes, build output, and local IDE state
 ├── .project                            # Identifies the repository as an Eclipse Java project
