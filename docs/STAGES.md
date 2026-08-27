@@ -13,9 +13,26 @@ For every stage:
 
 Do not ask an AI assistant to complete all eight stages at once. Later stages depend on earlier ones, and small changes make incorrect assumptions easier to find and reverse.
 
+## Current status on `main`
+
+This status was checked against `main` at commit `5173c9d` (`Add the Day 1 workshop example starter (#1)`):
+
+- `src/Supply.java` contains only an empty class declaration;
+- `src/Workshop.java` contains only an empty class declaration;
+- `src/Main.java` contains an empty `main` method;
+- the Ant and IDE scaffolding can compile and run the empty starter;
+- no stage implementation has begun; and
+- no committed test suite or GitHub Actions workflow is present.
+
+Therefore, every implementation stage below is marked **Not started on `main`**. These labels describe the shared `main` branch, not work that may exist in a student's branch or pull request. Update the labels if implementation is later merged into `main`.
+
 ## Testing approach
 
-When the completed work is submitted in a pull request targeting `main`, the repository's automated checks will run the tests as part of the pull-request workflow. The pull request should not be merged until those checks pass. Local testing during each stage remains necessary because it gives faster feedback and isolates failures before the full automated suite runs.
+When the implementation is submitted in a pull request targeting `main`, the stage tests will be run automatically as part of the pull-request checks. The pull request must not be merged until those automated checks pass.
+
+At the status point recorded above, `main` does not yet contain the committed test suite or GitHub Actions workflow that supplies those checks. That automation must be added or configured before the implementation pull request is treated as merge-ready. Until an automated test check is visible on the pull request, local results are the only available test evidence.
+
+Local testing during each stage remains necessary even after automation is available because it gives faster feedback and isolates failures before the complete pull-request suite runs.
 
 Testing is incremental: each stage first recompiles all production classes, then exercises only the behavior introduced so far. Use a short-lived `StageCheck.java` in the repository root when a stage needs executable assertions. Keep it outside `src/`, compile it together with the production sources, and delete it before committing:
 
@@ -37,6 +54,8 @@ If the baseline does not compile, resolve the project or IDE setup problem befor
 ## Stage 1: build the `Supply` model
 
 **Relevant specification:** “Workshop model” and “Required `Supply` API.”
+
+**Status on `main`: Not started.** `src/Supply.java` is an empty class. None of the required fields, constructor, or accessors exists, and no automated test currently covers this API.
 
 Implement only `Supply.java`:
 
@@ -71,6 +90,8 @@ The name is immutable after construction, so do not add `setName`. Do not add fo
 ## Stage 2: build the basic `Workshop` structure
 
 **Relevant specification:** “Workshop model” and “Required `Workshop` structure.”
+
+**Status on `main`: Not started.** `src/Workshop.java` is an empty class. The workshop fields, constructor, accessors, internal list, and defensive-copy behavior do not yet exist, and no automated test currently covers them.
 
 Implement the state and basic API in `Workshop.java`:
 
@@ -110,6 +131,8 @@ Do not implement the five required workshop behaviors yet.
 
 **Relevant specification:** “Supply-order rules” and “`addSupply`.”
 
+**Status on `main`: Not started.** Because `Workshop` is empty, `addSupply` and its insertion-order and duplicate-entry behavior are absent. No automated test currently covers this method.
+
 Add `addSupply(String supplyName, double amount)` to `Workshop`. Each call must:
 
 - construct a new `Supply` from the two arguments; and
@@ -142,6 +165,8 @@ A small temporary check may be useful, but do not replace the required `Main` se
 
 **Relevant specification:** “`totalSupplyCount`.”
 
+**Status on `main`: Not started.** `totalSupplyCount` is absent from the empty `Workshop` class. No automated test currently distinguishes entry count from quantity totals or distinct names.
+
 Add `totalSupplyCount()` to `Workshop`. Return the number of entries in the supply list. This is not the sum of their numeric amounts and does not count distinct names.
 
 This method should derive its result from current workshop state, so it stays correct after every call to `addSupply`. Do not maintain a separate counter that can become inconsistent with the list.
@@ -166,6 +191,8 @@ This method should derive its result from current workshop state, so it stays co
 ## Stage 5: implement `scaleToAttendees`
 
 **Relevant specification:** “`scaleToAttendees`.”
+
+**Status on `main`: Not started.** `scaleToAttendees` is absent. Floating-point scaling, attendee updates, invalid-input validation, and atomicity are not implemented or covered by automated tests.
 
 Add `scaleToAttendees(int newAttendeeCount)` to `Workshop`. The method has two distinct phases.
 
@@ -206,6 +233,8 @@ Review the division expression carefully. If both operands are treated as intege
 
 **Relevant specification:** “Amount formatting.”
 
+**Status on `main`: Not started.** The empty `Workshop` class has no private amount-formatting helper. Rounding, trailing-zero removal, locale independence, and avoidance of scientific notation are not implemented or covered by automated tests.
+
 Add a private helper in `Workshop` that converts one stored `double` amount into the required display text. Keep it private because it supports workshop presentation rather than adding to the public domain API.
 
 The helper must:
@@ -245,6 +274,8 @@ Also inspect the chosen formatter for scientific-notation and locale risks. Do n
 
 **Relevant specification:** “`toString`” and “`toPrettyString`.”
 
+**Status on `main`: Not started.** `Workshop` does not override `toString()` or define `toPrettyString()`. Required multiline output and formatting-helper integration are not implemented or covered by automated tests.
+
 Implement `Workshop.toString()` by deriving the complete multiline value from the workshop's current fields and supply list:
 
 1. start with `<title> (<attendees> attendees)`;
@@ -282,6 +313,8 @@ Implement `toPrettyString()` by returning the same content as `toString()` for t
 ## Stage 8: complete the example sequence in `Main`
 
 **Relevant specification:** “Required `Main` driver” and “Required output.”
+
+**Status on `main`: Not started.** `Main.main` is empty, so it compiles and produces no output. The required example sequence and character-for-character output check are not implemented or automated.
 
 Complete only the driver in `Main.java`. It should orchestrate the already implemented domain API:
 
