@@ -173,7 +173,7 @@ The following work was completed:
   - [Stage 5: Implement scaleToAttendees](https://github.com/School-of-Computing-and-Informatics/cmps-357-fa26-first-example/issues/6);
   - [Stage 6: Add the amount-formatting helper](https://github.com/School-of-Computing-and-Informatics/cmps-357-fa26-first-example/issues/7);
   - [Stage 7: Implement Workshop string representations](https://github.com/School-of-Computing-and-Informatics/cmps-357-fa26-first-example/issues/11); and
-  - [Stage 8: Complete the Main example sequence](https://github.com/School-of-Computing-and-Informatics/cmps-357-fa26-first-example/issues/10); and
+  - [Stage 8: Complete the Main example sequence](https://github.com/School-of-Computing-and-Informatics/cmps-357-fa26-first-example/issues/10).
 - created [Epic #12: Implement the Workshop Supply Planner](https://github.com/School-of-Computing-and-Informatics/cmps-357-fa26-first-example/issues/12), with an ordered checklist linking all eight stage issues and shared completion criteria.
 
 **Actual Requests:**
