@@ -28,22 +28,27 @@ Therefore, every implementation stage below is marked **Not started on `main`**.
 
 ## Testing approach
 
-When the implementation is submitted in a pull request targeting `main`, the stage tests will be run automatically as part of the pull-request checks. The pull request must not be merged until those automated checks pass.
+When the implementation is submitted in a pull request targeting `main`, the stage tests run automatically through `.github/workflows/stage-tests.yml`. The pull request must not be merged until the **Stage tests** check passes.
 
-At the status point recorded above, `main` does not yet contain the committed test suite or GitHub Actions workflow that supplies those checks. That automation must be added or configured before the implementation pull request is treated as merge-ready. Until an automated test check is visible on the pull request, local results are the only available test evidence.
+The current `main` baseline does not yet contain this infrastructure; this documentation branch introduces it through:
 
-Local testing during each stage remains necessary even after automation is available because it gives faster feedback and isolates failures before the complete pull-request suite runs.
+- `tests/StageTestRunner.java` — a dependency-free Java 17 test runner;
+- `scripts/run-stage-tests.sh` — the shared local and CI entry point; and
+- `.github/workflows/stage-tests.yml` — the pull-request and manual GitHub Actions workflow.
 
-Testing is incremental: each stage first recompiles all production classes, then exercises only the behavior introduced so far. Use a short-lived `StageCheck.java` in the repository root when a stage needs executable assertions. Keep it outside `src/`, compile it together with the production sources, and delete it before committing:
+The runner is stage-aware. It passes on the untouched starter and reports `0/8` completed stages. As implementation appears, it detects the highest stage that has started, requires all earlier stages to be complete, and runs every applicable test through that stage. A partially implemented stage fails instead of being silently skipped.
+
+Run the same suite locally from the repository root:
 
 ```bash
-javac -d out src/*.java StageCheck.java
-java -ea -cp out StageCheck
+bash scripts/run-stage-tests.sh
 ```
 
-Use Java's `assert` statements or explicit checks that throw `AssertionError`; the `-ea` flag enables assertions. Each check should construct fresh objects so one case cannot accidentally affect another. A passing run should exit with no assertion failure. These stage checks are disposable verification scaffolding, not part of the submitted implementation. Do not commit `StageCheck.java`, generated `.class` files, or `out/`.
+The script compiles `src/*.java` and the runner under Java 17, places generated classes in the ignored `out/stage-tests/` directory, enables Java assertions, and executes the tests. A passing run prints one `PASS` line for each completed stage followed by the detected stage count.
 
-The formatting helper in Stage 6 is private, so that stage uses compilation and focused code review. Its observable formatting behavior is tested through the public string API immediately in Stage 7. Do not weaken the helper's visibility merely to test it.
+The test runner uses reflection so it can compile against the empty starter classes while still detecting new fields, constructors, and methods as they are added. For Stage 6, reflection also permits direct testing of the private formatting helper without weakening its visibility. Production code must not be changed merely to accommodate the runner.
+
+Local testing during each stage remains necessary because it gives faster feedback and isolates failures before the complete pull-request suite runs.
 
 ## Before Stage 1: establish the baseline
 
@@ -79,11 +84,11 @@ The name is immutable after construction, so do not add `setName`. Do not add fo
 **Testing regime:**
 
 1. Recompile all files in `src/`.
-2. In a temporary `StageCheck.java`, construct a supply with a non-example name and amount, such as `"notebooks"` and `2.5`.
+2. Run the committed stage runner; its Stage 1 checks construct a supply with a non-example name and amount, `"notebooks"` and `2.5`.
 3. Assert that both getters return the constructor values.
 4. Call `setAmount(4.75)` and assert that `getAmount()` now returns `4.75` while `getName()` is unchanged.
 5. Confirm by code inspection that `name` is `final` and that no name setter exists.
-6. Run with assertions enabled, then delete the temporary check.
+6. Confirm `bash scripts/run-stage-tests.sh` reports `PASS Stage 1: Supply model`.
 
 **Suggested commit:** `Add Supply data model`
 
@@ -123,7 +128,7 @@ Do not implement the five required workshop behaviors yet.
 3. Assert that `getTitle()` and `getAttendees()` return those values and that `getSupplies()` is empty.
 4. Save the returned list, modify that copy, and assert that a fresh call to `getSupplies()` is still empty. This is the defensive-copy test.
 5. Confirm by inspection that `title` and the internal list reference are `final`.
-6. Run with assertions enabled, then delete the temporary check.
+6. Confirm `bash scripts/run-stage-tests.sh` reports `PASS Stage 2: Workshop structure`.
 
 **Suggested commit:** `Add Workshop data structure`
 
@@ -147,7 +152,7 @@ Do not search for an existing name, merge entries, replace an entry, sort the li
 - duplicate names remain separate entries; and
 - the stored names and amounts match the arguments.
 
-A small temporary check may be useful, but do not replace the required `Main` sequence before Stage 8. Remove disposable checks before committing unless they belong in a separate test artifact approved for the exercise.
+Use the committed runner rather than adding behavior to `Main` for testing. Do not replace the required `Main` sequence before Stage 8.
 
 **Testing regime:**
 
@@ -157,7 +162,7 @@ A small temporary check may be useful, but do not replace the required `Main` se
 4. Assert that each position contains the expected name and amount in insertion order.
 5. Assert that the duplicate-name entries remain separate objects and separate list entries.
 6. Modify or clear the returned list and assert that the workshop still reports all three entries through a fresh copy.
-7. Run with assertions enabled, then delete the temporary check.
+7. Confirm `bash scripts/run-stage-tests.sh` reports `PASS Stage 3: addSupply`.
 
 **Suggested commit:** `Implement supply addition`
 
@@ -184,7 +189,7 @@ This method should derive its result from current workshop state, so it stays co
 2. Assert that a new workshop reports `0`.
 3. Add entries one at a time and assert counts of `1`, `2`, and `3`.
 4. Use duplicate names and very large or fractional amounts to confirm that the method counts entries rather than names or quantities.
-5. Run with assertions enabled, then delete the temporary check.
+5. Confirm `bash scripts/run-stage-tests.sh` reports `PASS Stage 4: totalSupplyCount`.
 
 **Suggested commit:** `Count workshop supply entries`
 
@@ -225,7 +230,7 @@ Review the division expression carefully. If both operands are treated as intege
 4. Create a separate workshop and scale from a larger attendee count to a smaller one, such as 10 to 5, to catch integer-division errors in the opposite direction.
 5. For invalid-input atomicity, snapshot the attendee count and all amounts, call the method with `0` and then a negative value, and assert that each call throws `IllegalArgumentException`.
 6. After each exception, assert that the snapshot still matches the workshop exactly.
-7. Run with assertions enabled, then delete the temporary check.
+7. Confirm `bash scripts/run-stage-tests.sh` reports `PASS Stage 5: scaleToAttendees`.
 
 **Suggested commit:** `Scale supplies with attendee count`
 
@@ -261,12 +266,12 @@ Also inspect the chosen formatter for scientific-notation and locale risks. Do n
 
 **Testing regime:**
 
-1. Recompile all files in `src/`; this catches signature, import, and syntax problems.
-2. Review the helper against the five input/output pairs in the specification and trace each branch or formatter rule by hand.
-3. Confirm that the implementation uses a locale-independent decimal point, caps output at two fractional digits, removes trailing zeros, and cannot switch to scientific notation.
-4. Confirm that the helper returns text and performs no console output.
-5. Record the five expected pairs in the work log. They become executable public-API tests in Stage 7.
-6. Do not make the helper public or package-private and do not use reflection solely to test it.
+1. Run `bash scripts/run-stage-tests.sh`.
+2. The Stage 6 checks locate the private `String` helper that accepts one `double` and verify that it remains private.
+3. The runner verifies all five specification pairs plus a large whole number that must not use scientific notation.
+4. Review the implementation for locale independence and confirm that it returns text without changing stored amounts or printing.
+5. Confirm the runner reports `PASS Stage 6: amount formatting helper`.
+6. Do not make the helper public or package-private; the committed runner uses reflection specifically to preserve encapsulation.
 
 **Suggested commit:** `Format supply amounts for display`
 
@@ -301,12 +306,12 @@ Implement `toPrettyString()` by returning the same content as `toString()` for t
 
 1. Recompile all files in `src/`.
 2. Construct a workshop whose supplies produce all five formatting cases: `48.0`, `4.5`, `1.125`, `3.50`, and `0.75`.
-3. Build the complete expected multiline string literally in `StageCheck.java` and assert exact equality with `toString()`. This turns the deferred Stage 6 cases into observable tests.
+3. The committed runner builds a literal expected multiline string and asserts exact equality with `toString()`, exercising all five formatting cases through the public API.
 4. Assert that `toPrettyString()` exactly equals `toString()`.
 5. Assert that the result starts with the title rather than a newline, does not end with `\n` or `\r`, and contains supplies in insertion order.
 6. Capture or carefully observe standard output while calling `toString()`; the call itself must print nothing.
 7. Repeat with an empty workshop to establish the expected header-only behavior implied by the general format.
-8. Run with assertions enabled, then delete the temporary check.
+8. Confirm `bash scripts/run-stage-tests.sh` reports `PASS Stage 7: Workshop string representations`.
 
 **Suggested commit:** `Add workshop string representations`
 
@@ -352,7 +357,7 @@ A visual comparison is useful, but an exact text diff provides stronger evidence
 
 5. A passing diff produces no differences. If it fails, inspect spaces, apostrophes, decimal points, blank lines, and the final newline rather than changing domain behavior blindly.
 6. Re-run the Stage 5 invalid-input and atomicity checks as a regression test.
-7. Delete `actual.txt`, `expected.txt`, any `StageCheck.java`, and generated output before committing.
+7. Confirm the committed runner reports `PASS Stage 8: Main example sequence` and `Completed stages detected: 8/8`; remove any separately created temporary output before committing.
 
 **Suggested commit:** `Complete workshop planner example`
 
