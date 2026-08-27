@@ -15,6 +15,8 @@ Do not ask an AI assistant to complete all eight stages at once. Later stages de
 
 ## Testing approach
 
+When the completed work is submitted in a pull request targeting `main`, the repository's automated checks will run the tests as part of the pull-request workflow. The pull request should not be merged until those checks pass. Local testing during each stage remains necessary because it gives faster feedback and isolates failures before the full automated suite runs.
+
 Testing is incremental: each stage first recompiles all production classes, then exercises only the behavior introduced so far. Use a short-lived `StageCheck.java` in the repository root when a stage needs executable assertions. Keep it outside `src/`, compile it together with the production sources, and delete it before committing:
 
 ```bash
