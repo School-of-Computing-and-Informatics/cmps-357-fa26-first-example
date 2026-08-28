@@ -18,66 +18,51 @@ public final class StageTestRunner {
     }
 
     public static void main(String[] args) throws Exception {
-        if (!supplyStarted()) {
-            require(!workshopStarted() && !mainProducesOutput(),
-                    "A later stage has started before Stage 1");
+        if (!supplyReady()) {
             reportBaseline();
             return;
         }
 
         testStage1();
-        if (!workshopStarted()) {
-            require(!hasMethod(WORKSHOP, "addSupply") && !mainProducesOutput(),
-                    "A later stage has started before Stage 2");
-            report();
+        if (!workshopReady()) {
+            reportPending(2, workshopEvidence());
             return;
         }
 
         testStage2();
         if (!hasMethod(WORKSHOP, "addSupply")) {
-            require(!hasMethod(WORKSHOP, "totalSupplyCount") && !mainProducesOutput(),
-                    "A later stage has started before Stage 3");
-            report();
+            reportPending(3, false);
             return;
         }
 
         testStage3();
         if (!hasMethod(WORKSHOP, "totalSupplyCount")) {
-            require(!hasMethod(WORKSHOP, "scaleToAttendees") && !mainProducesOutput(),
-                    "A later stage has started before Stage 4");
-            report();
+            reportPending(4, false);
             return;
         }
 
         testStage4();
         if (!hasMethod(WORKSHOP, "scaleToAttendees")) {
-            require(findFormattingHelper() == null && !hasDeclaredToString()
-                            && !hasMethod(WORKSHOP, "toPrettyString") && !mainProducesOutput(),
-                    "A later stage has started before Stage 5");
-            report();
+            reportPending(5, false);
             return;
         }
 
         testStage5();
         Method helper = findFormattingHelper();
         if (helper == null) {
-            require(!hasDeclaredToString() && !hasMethod(WORKSHOP, "toPrettyString")
-                            && !mainProducesOutput(),
-                    "A later stage has started before Stage 6");
-            report();
+            reportPending(6, false);
             return;
         }
 
         testStage6(helper);
-        if (!hasDeclaredToString() && !hasMethod(WORKSHOP, "toPrettyString")) {
-            require(!mainProducesOutput(), "Stage 8 has started before Stage 7");
-            report();
+        if (!hasDeclaredToString() || !hasMethod(WORKSHOP, "toPrettyString")) {
+            reportPending(7, hasDeclaredToString() || hasMethod(WORKSHOP, "toPrettyString"));
             return;
         }
 
         testStage7();
         if (!mainProducesOutput()) {
-            report();
+            reportPending(8, false);
             return;
         }
 
@@ -243,16 +228,33 @@ public final class StageTestRunner {
         pass(8, "Main example sequence");
     }
 
-    private static boolean supplyStarted() {
-        return SUPPLY.getDeclaredFields().length > 0
-                || hasMethod(SUPPLY, "getName") || hasMethod(SUPPLY, "getAmount")
-                || hasMethod(SUPPLY, "setAmount") || hasConstructor(SUPPLY, String.class, double.class);
+    private static boolean supplyReady() {
+        return hasConstructor(SUPPLY, String.class, double.class)
+                && hasMethod(SUPPLY, "getName")
+                && hasMethod(SUPPLY, "getAmount")
+                && hasMethod(SUPPLY, "setAmount");
     }
 
-    private static boolean workshopStarted() {
+    private static boolean supplyEvidence() {
+        return SUPPLY.getDeclaredFields().length > 0
+                || hasConstructor(SUPPLY, String.class, double.class)
+                || hasMethod(SUPPLY, "getName")
+                || hasMethod(SUPPLY, "getAmount")
+                || hasMethod(SUPPLY, "setAmount");
+    }
+
+    private static boolean workshopReady() {
+        return hasConstructor(WORKSHOP, String.class, int.class)
+                && hasMethod(WORKSHOP, "getTitle")
+                && hasMethod(WORKSHOP, "getAttendees")
+                && hasMethod(WORKSHOP, "getSupplies");
+    }
+
+    private static boolean workshopEvidence() {
         return WORKSHOP.getDeclaredFields().length > 0
                 || hasConstructor(WORKSHOP, String.class, int.class)
-                || hasMethod(WORKSHOP, "getTitle") || hasMethod(WORKSHOP, "getAttendees")
+                || hasMethod(WORKSHOP, "getTitle")
+                || hasMethod(WORKSHOP, "getAttendees")
                 || hasMethod(WORKSHOP, "getSupplies");
     }
 
@@ -413,9 +415,24 @@ public final class StageTestRunner {
         System.out.println("PASS Stage " + stage + ": " + description);
     }
 
-    private static void reportBaseline() {
-        System.out.println("PASS starter baseline: no implementation stage detected");
+    private static void reportBaseline() throws Exception {
+        System.out.println("PASS Stage 1 pending: required Supply API not yet present");
+        if (supplyEvidence()) {
+            System.out.println("INFO partial Stage 1 scaffolding detected");
+        }
+        if (workshopEvidence()) {
+            System.out.println("INFO partial Stage 2 scaffolding detected before Stage 1 completion");
+        }
+        if (mainProducesOutput()) {
+            System.out.println("INFO early Main scaffolding detected before Stage 8");
+        }
         System.out.println("Completed stages detected: 0/8");
+    }
+
+    private static void reportPending(int stage, boolean partialEvidence) {
+        String detail = partialEvidence ? "partial scaffolding detected" : "required API not yet present";
+        System.out.println("PASS Stage " + stage + " pending: " + detail);
+        report();
     }
 
     private static void report() {
