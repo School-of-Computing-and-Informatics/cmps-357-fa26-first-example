@@ -15,16 +15,16 @@ Do not ask an AI assistant to complete all eight stages at once. Later stages de
 
 ## Current status on `main`
 
-This status was checked against `main` at commit `5173c9d` (`Add the Day 1 workshop example starter (#1)`):
+This status was checked against `main` at commit `c2cdefe` (`Merge pull request #13 from School-of-Computing-and-Informatics/data-model`):
 
-- `src/Supply.java` contains only an empty class declaration;
-- `src/Workshop.java` contains only an empty class declaration;
-- `src/Main.java` contains an empty `main` method;
-- the Ant and IDE scaffolding can compile and run the empty starter;
-- no stage implementation has begun; and
-- no committed test suite or GitHub Actions workflow is present.
+- `src/Supply.java` still contains only an empty class declaration;
+- `src/Workshop.java` now contains imports, three private fields, a two-argument constructor, and empty-list initialization;
+- `src/Main.java` now constructs a placeholder workshop for 25 attendees and prints `Workshop created.`;
+- the Ant and IDE scaffolding compiles and runs this intermediate program;
+- no stage is complete according to `docs/SPEC.md`; and
+- `main` still has no committed stage test suite or GitHub Actions workflow.
 
-Therefore, every implementation stage below is marked **Not started on `main`**. These labels describe the shared `main` branch, not work that may exist in a student's branch or pull request. Update the labels if implementation is later merged into `main`.
+The changes are out of the suggested sequence: Stage 2 and Stage 8 scaffolding exists before Stage 1 is implemented. Status labels below describe the shared `main` branch, not work that may exist in another branch or pull request.
 
 ## Testing approach
 
@@ -36,7 +36,7 @@ The current `main` baseline does not yet contain this infrastructure; this docum
 - `scripts/run-stage-tests.sh` — the shared local and CI entry point; and
 - `.github/workflows/stage-tests.yml` — the pull-request and manual GitHub Actions workflow.
 
-The runner is stage-aware. It passes on the untouched starter and reports `0/8` completed stages. As implementation appears, it detects the highest stage that has started, requires all earlier stages to be complete, and runs every applicable test through that stage. A partially implemented stage fails instead of being silently skipped.
+The runner is stage-aware. It recognizes the current partial scaffold and reports `0/8` completed stages without treating inherited later-stage placeholders as completed work. A stage becomes test-ready when its required API surface is present; the runner then executes the full behavioral and structural checks for that stage and all earlier stages. Partial or out-of-order scaffolding is reported as informational status until the stage is ready for its complete test.
 
 Run the same suite locally from the repository root:
 
@@ -52,15 +52,21 @@ Local testing during each stage remains necessary because it gives faster feedba
 
 ## Before Stage 1: establish the baseline
 
-Read `docs/SPEC.md` completely, then inspect the three files in `src/`. Confirm that `Supply.java` and `Workshop.java` contain empty class declarations and that `Main.java` contains an empty `main` method. Run `Main` once. The project should compile successfully and produce no output.
+Read `docs/SPEC.md` completely, then inspect the three files in `src/`. The current baseline is no longer the original empty starter:
 
-If the baseline does not compile, resolve the project or IDE setup problem before implementing domain behavior. See `docs/IDE-SETUP.md` or `GETTING_STARTED_INTELLIJ.md` as appropriate.
+- `Supply.java` remains empty;
+- `Workshop.java` contains partial model scaffolding; and
+- `Main.java` constructs a placeholder workshop and prints `Workshop created.`.
+
+Run the program once and confirm that this intermediate baseline compiles and produces the single placeholder line. Then run `bash scripts/run-stage-tests.sh`; it should report zero completed stages plus informational messages for the partial Stage 2 and early Stage 8 scaffolding.
+
+Do not treat existing code as correct merely because it compiles. Each stage must still be reconciled with `docs/SPEC.md`. If the baseline does not compile, resolve the project or IDE setup problem before implementing additional domain behavior. See `docs/IDE-SETUP.md` or `GETTING_STARTED_INTELLIJ.md` as appropriate.
 
 ## Stage 1: build the `Supply` model
 
 **Relevant specification:** “Workshop model” and “Required `Supply` API.”
 
-**Status on `main`: Not started.** `src/Supply.java` is an empty class. None of the required fields, constructor, or accessors exists, and no automated test currently covers this API.
+**Status on `main`: Not started.** `src/Supply.java` is still an empty class. None of the required fields, constructor, or accessors exists. The branch test runner therefore leaves Stage 1 pending.
 
 Implement only `Supply.java`:
 
@@ -96,7 +102,7 @@ The name is immutable after construction, so do not add `setName`. Do not add fo
 
 **Relevant specification:** “Workshop model” and “Required `Workshop` structure.”
 
-**Status on `main`: Not started.** `src/Workshop.java` is an empty class. The workshop fields, constructor, accessors, internal list, and defensive-copy behavior do not yet exist, and no automated test currently covers them.
+**Status on `main`: Partially scaffolded, not complete.** `src/Workshop.java` has a title field, an `attendeeCount` field, an `ArrayList<Supply>` field, a two-argument constructor, and empty-list initialization. It does not yet match the required structure: `title` and the list reference are not `final`, the attendee field is named `attendeeCount` rather than `attendees`, the list field is declared as `ArrayList<Supply>` rather than `List<Supply>`, and all three required accessors are absent. The imported `List` type is currently unused.
 
 Implement the state and basic API in `Workshop.java`:
 
@@ -136,7 +142,7 @@ Do not implement the five required workshop behaviors yet.
 
 **Relevant specification:** “Supply-order rules” and “`addSupply`.”
 
-**Status on `main`: Not started.** Because `Workshop` is empty, `addSupply` and its insertion-order and duplicate-entry behavior are absent. No automated test currently covers this method.
+**Status on `main`: Not started.** The partial `Workshop` class does not define `addSupply`; insertion-order and duplicate-entry behavior remain absent.
 
 Add `addSupply(String supplyName, double amount)` to `Workshop`. Each call must:
 
@@ -170,7 +176,7 @@ Use the committed runner rather than adding behavior to `Main` for testing. Do n
 
 **Relevant specification:** “`totalSupplyCount`.”
 
-**Status on `main`: Not started.** `totalSupplyCount` is absent from the empty `Workshop` class. No automated test currently distinguishes entry count from quantity totals or distinct names.
+**Status on `main`: Not started.** `totalSupplyCount` is absent from the partially scaffolded `Workshop` class.
 
 Add `totalSupplyCount()` to `Workshop`. Return the number of entries in the supply list. This is not the sum of their numeric amounts and does not count distinct names.
 
@@ -197,7 +203,7 @@ This method should derive its result from current workshop state, so it stays co
 
 **Relevant specification:** “`scaleToAttendees`.”
 
-**Status on `main`: Not started.** `scaleToAttendees` is absent. Floating-point scaling, attendee updates, invalid-input validation, and atomicity are not implemented or covered by automated tests.
+**Status on `main`: Not started.** `scaleToAttendees` is absent. Floating-point scaling, attendee updates, invalid-input validation, and atomicity are not implemented.
 
 Add `scaleToAttendees(int newAttendeeCount)` to `Workshop`. The method has two distinct phases.
 
@@ -238,7 +244,7 @@ Review the division expression carefully. If both operands are treated as intege
 
 **Relevant specification:** “Amount formatting.”
 
-**Status on `main`: Not started.** The empty `Workshop` class has no private amount-formatting helper. Rounding, trailing-zero removal, locale independence, and avoidance of scientific notation are not implemented or covered by automated tests.
+**Status on `main`: Not started.** The partial `Workshop` class has no private amount-formatting helper. Rounding, trailing-zero removal, locale independence, and avoidance of scientific notation are not implemented.
 
 Add a private helper in `Workshop` that converts one stored `double` amount into the required display text. Keep it private because it supports workshop presentation rather than adding to the public domain API.
 
@@ -279,7 +285,7 @@ Also inspect the chosen formatter for scientific-notation and locale risks. Do n
 
 **Relevant specification:** “`toString`” and “`toPrettyString`.”
 
-**Status on `main`: Not started.** `Workshop` does not override `toString()` or define `toPrettyString()`. Required multiline output and formatting-helper integration are not implemented or covered by automated tests.
+**Status on `main`: Not started.** `Workshop` does not override `toString()` or define `toPrettyString()`. Required multiline output and formatting-helper integration are not implemented.
 
 Implement `Workshop.toString()` by deriving the complete multiline value from the workshop's current fields and supply list:
 
@@ -319,7 +325,7 @@ Implement `toPrettyString()` by returning the same content as `toString()` for t
 
 **Relevant specification:** “Required `Main` driver” and “Required output.”
 
-**Status on `main`: Not started.** `Main.main` is empty, so it compiles and produces no output. The required example sequence and character-for-character output check are not implemented or automated.
+**Status on `main`: Early placeholder only, not complete.** `Main.main` constructs `Workshop("AI Development Workshop", 25)` and prints `Workshop created.`. This does not use the required title, attendee count, supplies, count, scaling sequence, or exact output. Preserve it only as temporary scaffolding and replace it with the specification-driven sequence in this stage.
 
 Complete only the driver in `Main.java`. It should orchestrate the already implemented domain API:
 
