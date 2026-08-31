@@ -154,3 +154,47 @@ Check the kindle.html structure. Opening in browser displays correctly, but open
 See attached. The previous version didn't do this. 
 ```
 
+## 15. Plan, test, and track the staged implementation
+
+A second [shared ChatGPT conversation](https://chatgpt.com/share/6a90b9d5-98f0-83ea-adb8-eb90f05c6d6f) expanded the README's suggested implementation order into a detailed, trackable development plan.
+
+The following work was completed:
+
+- added `docs/STAGES.md` with eight sequential implementation stages;
+- expanded each stage with its relevant specification sections, implementation boundaries, verification checklist, testing regime, and suggested commit message;
+- documented a shared incremental testing approach, including local checks, exact-output comparison, regression testing, and the requirement that pull requests targeting `main` run automated tests before merge;
+- added the executable testing infrastructure: a dependency-free Java 17 stage-aware runner, a shared shell command, and a GitHub Actions workflow for pull requests targeting `main`;
+- checked the current `main` branch and recorded that `Supply.java` and `Workshop.java` remain empty classes, `Main.main` remains empty, and no committed test suite or GitHub Actions workflow is currently present;
+- added a status section to every stage, with all eight marked not started on `main`;
+- created one GitHub issue for each implementation stage:
+  - [Stage 1: Build the Supply model](https://github.com/School-of-Computing-and-Informatics/cmps-357-fa26-first-example/issues/8);
+  - [Stage 2: Build the Workshop structure](https://github.com/School-of-Computing-and-Informatics/cmps-357-fa26-first-example/issues/5);
+  - [Stage 3: Implement addSupply](https://github.com/School-of-Computing-and-Informatics/cmps-357-fa26-first-example/issues/4);
+  - [Stage 4: Implement totalSupplyCount](https://github.com/School-of-Computing-and-Informatics/cmps-357-fa26-first-example/issues/9);
+  - [Stage 5: Implement scaleToAttendees](https://github.com/School-of-Computing-and-Informatics/cmps-357-fa26-first-example/issues/6);
+  - [Stage 6: Add the amount-formatting helper](https://github.com/School-of-Computing-and-Informatics/cmps-357-fa26-first-example/issues/7);
+  - [Stage 7: Implement Workshop string representations](https://github.com/School-of-Computing-and-Informatics/cmps-357-fa26-first-example/issues/11); and
+  - [Stage 8: Complete the Main example sequence](https://github.com/School-of-Computing-and-Informatics/cmps-357-fa26-first-example/issues/10).
+- created [Epic #12: Implement the Workshop Supply Planner](https://github.com/School-of-Computing-and-Informatics/cmps-357-fa26-first-example/issues/12), with an ordered checklist linking all eight stage issues and shared completion criteria.
+
+**Actual Requests:**
+```
+For https://github.com/School-of-Computing-and-Informatics/cmps-357-fa26-first-example:
+
+- See the Suggested implementation order in the README and give a STAGES.md file documenting the work order and expanding on the implementation details needed for each step
+
+Move the STAGES file to the docs directory. Add a testing regime for each stage in the STAGES file.
+
+Add in the Testing approach that tests will be run automatically in a pull request that merges onto main.
+
+Update the stages file based on the current repo status in main.
+
+Include status sections in each stage.
+
+Create issues for each stage and an epic tracking the stages.
+
+Update the TRANSCRIPT.md with the link to this conversation and a description of the tasks completed.
+
+Add the infrastructure of the testing regime to this branch.
+```
+

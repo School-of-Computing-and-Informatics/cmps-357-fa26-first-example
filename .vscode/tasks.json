@@ -32,6 +32,20 @@
       "problemMatcher": [],
       "group": "test"
     }
+    ,
+    {
+      "label": "Run Stage Tests (PowerShell)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/scripts/run-stage-tests.ps1"
+      ],
+      "problemMatcher": [],
+      "group": "test"
+    }
   ]
 }
 
