@@ -8,31 +8,53 @@ The purpose is not to preserve every message. Record the interactions that influ
 
 ### Goal
 
-What single behavior were you trying to implement?
+Implement the Stage 1 `Supply` model so it matches the specification with the required fields, constructor, and accessors only.
 
 ### Context supplied
 
-Which specification sections, source files, existing output, or error messages did you give the assistant?
+- `docs/STAGES.md` — Stage 1: build the `Supply` model
+- `docs/SPEC.md` — relevant “Workshop model” and “Required `Supply` API” sections
+- `src/Supply.java` — originally empty class
+- The requirement to avoid adding any behavior beyond the Stage 1 model
 
 ### Prompt
 
-Paste or summarize the prompt.
+Implement only `Supply.java` for Stage 1. Add a final `String` field named `name`, a mutable `double` field named `amount`, the two-argument constructor, `getName()`, `getAmount()`, and `setAmount(double amount)`. Do not add any validation, formatting, or extra behavior.
 
 ### Result
 
-What did the assistant suggest or change?
+The assistant created a minimal `Supply` class with:
+- `private final String name;`
+- `private double amount;`
+- constructor assigning both values
+- `getName()` returning the stored name
+- `getAmount()` returning the stored amount
+- `setAmount(double amount)` updating the amount
 
 ### Review
 
-What did you inspect before accepting the result?
+Checked that the implementation matches the Stage 1 requirements:
+- `name` is `final` and has no setter
+- `amount` is mutable via setter and getter
+- the constructor initializes both fields from the supplied arguments
+- no extra behavior was added beyond the required API
 
 ### Verification
 
-How did you determine whether the change was correct?
+Stage 1 testing requirements before accepting the implementation:
+
+- Compile the project successfully.
+- Construct a `Supply` with a non-example name and amount such as `"notebooks"` and `2.5`.
+- Confirm `getName()` returns `"notebooks"`.
+- Confirm `getAmount()` returns `2.5`.
+- Call `setAmount(4.75)` and confirm `getAmount()` returns `4.75`.
+- Confirm `getName()` remains unchanged after the mutation.
+- Confirm `name` is `final` and there is no `setName` method.
+- Run the stage-aware verification suite and confirm it reports `PASS Stage 1: Supply model`.
 
 ### Follow-up or correction
 
-What, if anything, needed to be refined?
+No additional refinement was needed beyond confirming the implementation stayed limited to the Stage 1 API.
 
 ---
 
