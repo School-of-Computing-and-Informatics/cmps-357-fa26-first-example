@@ -23,4 +23,8 @@ public class Workshop {
     public List<Supply> getSupplies() {
         return new ArrayList<>(supplies);
     }
+
+    public void addSupply(String supplyName, double amount) {
+        supplies.add(new Supply(supplyName, amount));
+    }
 }
