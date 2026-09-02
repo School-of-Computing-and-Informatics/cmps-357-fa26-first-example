@@ -27,4 +27,8 @@ public class Workshop {
     public void addSupply(String supplyName, double amount) {
         supplies.add(new Supply(supplyName, amount));
     }
+
+    public int totalSupplyCount() {
+        return supplies.size();
+    }
 }
