@@ -15,28 +15,29 @@ Do not ask an AI assistant to complete all eight stages at once. Later stages de
 
 ## Current status on `main`
 
-This status was checked against `main` at commit `c2cdefe` (`Merge pull request #13 from School-of-Computing-and-Informatics/data-model`):
+This status was checked against `main` at commit `5f2bedf` (`Implement Stage 1 (#14)`):
 
-- `src/Supply.java` still contains only an empty class declaration;
+- `src/Supply.java` contains the complete Stage 1 `Supply` model;
 - `src/Workshop.java` now contains imports, three private fields, a two-argument constructor, and empty-list initialization;
 - `src/Main.java` now constructs a placeholder workshop for 25 attendees and prints `Workshop created.`;
 - the Ant and IDE scaffolding compiles and runs this intermediate program;
-- no stage is complete according to `docs/SPEC.md`; and
-- `main` still has no committed stage test suite or GitHub Actions workflow.
+- Stage 1 is complete according to `docs/SPEC.md`;
+- the committed stage test suite reports `1/8` completed stages; and
+- the GitHub Actions workflow runs the stage tests on pull requests targeting `main`.
 
-The changes are out of the suggested sequence: Stage 2 and Stage 8 scaffolding exists before Stage 1 is implemented. Status labels below describe the shared `main` branch, not work that may exist in another branch or pull request.
+The changes remain out of the suggested sequence: Stage 2 and Stage 8 scaffolding exists before the completed Stage 1 implementation. Status labels below describe the shared `main` branch, not work that may exist in another branch or pull request.
 
 ## Testing approach
 
 When the implementation is submitted in a pull request targeting `main`, the stage tests run automatically through `.github/workflows/stage-tests.yml`. The pull request must not be merged until the **Stage tests** check passes.
 
-The current `main` baseline does not yet contain this infrastructure; this documentation branch introduces it through:
+The current `main` branch contains this infrastructure through:
 
 - `tests/StageTestRunner.java` — a dependency-free Java 17 test runner;
 - `scripts/run-stage-tests.sh` — the shared local and CI entry point; and
 - `.github/workflows/stage-tests.yml` — the pull-request and manual GitHub Actions workflow.
 
-The runner is stage-aware. It recognizes the current partial scaffold and reports `0/8` completed stages without treating inherited later-stage placeholders as completed work. A stage becomes test-ready when its required API surface is present; the runner then executes the full behavioral and structural checks for that stage and all earlier stages. Partial or out-of-order scaffolding is reported as informational status until the stage is ready for its complete test.
+The runner is stage-aware. It recognizes the completed Stage 1 implementation and reports `1/8` completed stages without treating inherited later-stage placeholders as completed work. A stage becomes test-ready when its required API surface is present; the runner then executes the full behavioral and structural checks for that stage and all earlier stages. Partial or out-of-order scaffolding is reported as informational status until the stage is ready for its complete test.
 
 Run the same suite locally from the repository root:
 
@@ -52,13 +53,13 @@ Local testing during each stage remains necessary because it gives faster feedba
 
 ## Before Stage 1: establish the baseline
 
-Read `docs/SPEC.md` completely, then inspect the three files in `src/`. The current baseline is no longer the original empty starter:
+Read `docs/SPEC.md` completely, then inspect the three files in `src/`. Before Stage 1 was implemented, the repository baseline was:
 
-- `Supply.java` remains empty;
+- `Supply.java` was empty;
 - `Workshop.java` contains partial model scaffolding; and
 - `Main.java` constructs a placeholder workshop and prints `Workshop created.`.
 
-Run the program once and confirm that this intermediate baseline compiles and produces the single placeholder line. Then run `bash scripts/run-stage-tests.sh`; it should report zero completed stages plus informational messages for the partial Stage 2 and early Stage 8 scaffolding.
+Run the program once and confirm that this intermediate baseline compiles and produces the single placeholder line. Then run `bash scripts/run-stage-tests.sh`; on the current `main` branch it reports one completed stage plus informational messages for the partial Stage 2 and early Stage 8 scaffolding.
 
 Do not treat existing code as correct merely because it compiles. Each stage must still be reconciled with `docs/SPEC.md`. If the baseline does not compile, resolve the project or IDE setup problem before implementing additional domain behavior. See `docs/IDE-SETUP.md` or `GETTING_STARTED_INTELLIJ.md` as appropriate.
 
@@ -66,7 +67,7 @@ Do not treat existing code as correct merely because it compiles. Each stage mus
 
 **Relevant specification:** “Workshop model” and “Required `Supply` API.”
 
-**Status on `main`: Not started.** `src/Supply.java` is still an empty class. None of the required fields, constructor, or accessors exists. The branch test runner therefore leaves Stage 1 pending.
+**Status on `main`: Complete.** `src/Supply.java` contains the required fields, constructor, and accessors. The branch test runner reports `PASS Stage 1: Supply model`.
 
 Implement only `Supply.java`:
 
